@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import UserMenu from './UserMenu'
@@ -22,7 +22,7 @@ export default function Navbar() {
   const isActive = (path: string) => pathname === path
 
   // Check for notifications
-  useState(() => {
+  useEffect(() => {
     if (!session?.user) return
 
     const checkNotifications = async () => {

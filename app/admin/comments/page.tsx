@@ -12,6 +12,18 @@ export default async function AdminCommentsPage() {
     redirect('/login')
   }
 
+  type CommentWithJob = {
+    id: string
+    authorName: string | null
+    authorEmail: string | null
+    content: string
+    status: string
+    createdAt: Date
+    jobPostId: string | null
+    pageUrl: string | null
+    jobPost?: { id: string; title: string } | null
+  }
+
   // Fetch all comments
   const comments = await prisma.comment.findMany({
     include: {
@@ -45,7 +57,7 @@ export default async function AdminCommentsPage() {
 
         {/* Comments List */}
         <div className="space-y-4">
-          {comments.map((comment) => (
+          {comments.map((comment: CommentWithJob) => (
             <div key={comment.id} className="bg-white rounded-lg border border-[#e0d9c7] p-6">
               <div className="flex justify-between items-start mb-3">
                 <div>

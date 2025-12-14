@@ -106,7 +106,7 @@ export async function POST(request: NextRequest) {
 
     if (error instanceof ZodError) {
       // Handle Zod validation errors with user-friendly messages
-      const fieldError = error.errors[0]
+      const fieldError = error.issues[0]
       const field = fieldError.path[0]
       
       let message = ''
@@ -121,9 +121,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: message }, { status: 400 })
     }
 
-    if (error.errors) {
+    if ((error as { issues?: Array<{ message: string }> }).issues) {
+      const issues = (error as { issues: Array<{ message: string }> }).issues
       return NextResponse.json(
-        { error: error.errors[0].message },
+        { error: issues[0].message },
         { status: 400 }
       )
     }
