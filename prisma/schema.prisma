@@ -1,0 +1,120 @@
+// Prisma schema for FreightThis Job Portal
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Enum for user roles
+enum Role {
+  USER
+  ADMIN
+}
+
+// Enum for job/comment status
+enum Status {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+// Enum for job types
+enum JobType {
+  FULL_TIME
+  PART_TIME
+  CONTRACT
+  FREELANCE
+  INTERNSHIP
+}
+
+// User model for authentication and authorization
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  password      String    // Hashed password
+  role          Role      @default(USER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Relations
+  jobPosts      JobPost[]
+  applications  Application[]
+  comments      Comment[]
+}
+
+// JobPost model for job listings
+model JobPost {
+  id            String    @id @default(cuid())
+  title         String
+  description   String    @db.Text
+  location      String
+  category      String    // e.g., "Technology", "Finance", "Healthcare"
+  jobType       JobType   @default(FULL_TIME)
+  contactEmail  String
+  companyName   String?
+  salary        String?
+  requirements  String?   @db.Text
+  imageUrl      String?   // Optional company/job image
+  status        Status    @default(PENDING)
+  expiresAt     DateTime  // Auto-calculated as 30 days from creation
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Relations
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  applications  Application[]
+  comments      Comment[]
+  
+  @@index([status])
+  @@index([category])
+  @@index([jobType])
+  @@index([expiresAt])
+}
+
+// Application model for job applications
+model Application {
+  id            String    @id @default(cuid())
+  applicantName String
+  applicantEmail String
+  message       String    @db.Text
+  resumeUrl     String    // URL to resume stored in Supabase Storage
+  isReviewed    Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Relations
+  jobPostId     String
+  jobPost       JobPost   @relation(fields: [jobPostId], references: [id], onDelete: Cascade)
+  
+  userId        String?   // Optional - for logged-in users
+  user          User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+  
+  @@index([jobPostId])
+  @@index([isReviewed])
+}
+
+// Comment model for page/job comments
+model Comment {
+  id            String    @id @default(cuid())
+  content       String    @db.Text
+  authorName    String
+  authorEmail   String
+  status        Status    @default(PENDING)
+  pageUrl       String?   // For page-level comments
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Relations
+  jobPostId     String?   // Optional - for job-specific comments
+  jobPost       JobPost?  @relation(fields: [jobPostId], references: [id], onDelete: Cascade)
+  
+  userId        String?   // Optional - for logged-in users
+  user          User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+  
+  @@index([status])
+  @@index([jobPostId])
+}
