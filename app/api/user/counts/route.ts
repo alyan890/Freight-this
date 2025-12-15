@@ -12,20 +12,31 @@ export async function GET() {
 
     const userId = session.user.id
 
-    const [userApplications, userComments, newJobs] = await Promise.all([
+    const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+
+    const [userApplications, userComments, userJobs] = await Promise.all([
       prisma.application.count({
-        where: { createdAt: { gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) } },
+        where: {
+          userId: userId,
+          createdAt: { gte: sevenDaysAgo },
+        },
       }),
       prisma.comment.count({
-        where: { status: 'APPROVED', createdAt: { gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) } },
+        where: {
+          userId: userId,
+          createdAt: { gte: sevenDaysAgo },
+        },
       }),
       prisma.jobPost.count({
-        where: { status: 'APPROVED', createdAt: { gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) } },
+        where: {
+          userId: userId,
+          createdAt: { gte: sevenDaysAgo },
+        },
       }),
     ])
 
     return NextResponse.json({
-      jobs: newJobs,
+      jobs: userJobs,
       applications: userApplications,
       comments: userComments,
     })
