@@ -10,26 +10,31 @@ export default async function JobsPage({
   // Await searchParams in Next.js 16
   const params = await searchParams
 
-  const jobs = await prisma.jobPost.findMany({
-    where: {
-      status: 'APPROVED',
-      expiresAt: {
-        gte: new Date(),
-      },
-      ...(params.category && { category: params.category }),
-      ...(params.type && { jobType: params.type as any }),
-      ...(params.location && {
-        location: {
-          contains: params.location,
-          mode: 'insensitive',
+  let jobs: any[] = []
+  try {
+    jobs = await prisma.jobPost.findMany({
+      where: {
+        status: 'APPROVED',
+        expiresAt: {
+          gte: new Date(),
         },
-      }),
-    },
-    orderBy: {
-      createdAt: 'desc',
-    },
-    take: 50,
-  })
+        ...(params.category && { category: params.category }),
+        ...(params.type && { jobType: params.type as any }),
+        ...(params.location && {
+          location: {
+            contains: params.location,
+            mode: 'insensitive',
+          },
+        }),
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+      take: 50,
+    })
+  } catch (err) {
+    console.error('[Jobs] Failed to fetch jobs:', err)
+  }
 
   return (
     <div className="min-h-screen bg-[#f7f0e6] text-gray-900">

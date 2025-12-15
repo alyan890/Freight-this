@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { useSession } from 'next-auth/react'
@@ -48,7 +49,8 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 relative">
+          <Link href="/" className="flex items-center space-x-3 relative">
+            <Image src="/WhatsApp_Image_2025-12-12_at_1.36.44_AM-removebg-preview.png" alt="FreightThis" width={90} height={90} priority />
             <div className="text-2xl font-bold text-gray-800">
               Freight<span className="text-amber-700">This</span>
             </div>

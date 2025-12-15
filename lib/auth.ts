@@ -10,13 +10,13 @@ const loginSchema = z.object({
   password: z.string().min(6),
 })
 
-// Validate required environment variables
-if (!process.env.NEXTAUTH_SECRET) {
-  console.warn('[Auth] Warning: NEXTAUTH_SECRET is not set')
+// Validate required environment variables (support NextAuth v5 aliases)
+if (!process.env.AUTH_SECRET && !process.env.NEXTAUTH_SECRET) {
+  console.warn('[Auth] Warning: AUTH_SECRET/NEXTAUTH_SECRET is not set')
 }
 
-if (!process.env.NEXTAUTH_URL && process.env.NODE_ENV === 'production') {
-  console.warn('[Auth] Warning: NEXTAUTH_URL is not set for production')
+if (!process.env.AUTH_URL && !process.env.NEXTAUTH_URL && process.env.NODE_ENV === 'production') {
+  console.warn('[Auth] Warning: AUTH_URL/NEXTAUTH_URL is not set for production')
 }
 
 export const authConfig: NextAuthConfig = {
@@ -96,7 +96,7 @@ export const authConfig: NextAuthConfig = {
     strategy: 'jwt',
     maxAge: 24 * 60 * 60, // 24 hours
   },
-  secret: process.env.NEXTAUTH_SECRET || 'dev-secret-key',
+  secret: process.env.AUTH_SECRET ?? process.env.NEXTAUTH_SECRET ?? 'dev-secret-key',
   trustHost: true,
 }
 

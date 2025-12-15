@@ -20,6 +20,11 @@ export const metadata: Metadata = {
   description:
     'FreightThis is a modern job portal connecting talented professionals with top employers. Browse jobs, apply, and find your next career opportunity.',
   keywords: ['jobs', 'careers', 'job portal', 'employment', 'recruitment'],
+  icons: {
+    icon: [
+      { url: '/WhatsApp_Image_2025-12-12_at_1.36.44_AM-removebg-preview.png', type: 'image/png' },
+    ],
+  },
   openGraph: {
     title: 'FreightThis - Find Your Dream Job',
     description: 'Connect with top employers and discover opportunities that match your skills.',
