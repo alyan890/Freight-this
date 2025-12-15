@@ -105,17 +105,17 @@ export async function POST(request: NextRequest) {
     console.error('Error creating job:', error)
 
     if (error instanceof ZodError) {
-      // Handle Zod validation errors with user-friendly messages
-      const fieldError = error.issues[0]
-      const field = fieldError.path[0]
+        // Handle Zod validation errors
+        const fieldError = error.issues?.[0]
+        const field = fieldError?.path[0]
       
       let message = ''
-      if (fieldError.code === 'too_big') {
-        message = `${String(field)} cannot exceed ${fieldError.maximum} characters`
-      } else if (fieldError.code === 'too_small') {
-        message = fieldError.message
-      } else {
-        message = fieldError.message
+        if (fieldError?.code === 'too_big') {
+          message = `${String(field)} cannot exceed ${fieldError.maximum} characters`
+        } else if (fieldError?.code === 'too_small') {
+          message = fieldError.message
+        } else {
+          message = fieldError?.message || 'Validation error'
       }
       
       return NextResponse.json({ error: message }, { status: 400 })

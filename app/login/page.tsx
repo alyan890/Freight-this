@@ -65,8 +65,11 @@ export default function LoginPage() {
             setLoading(false)
           }
         } else {
-          console.log('[Login] Sign-in failed with error:', result.error)
-          setError(result.error || 'Invalid email or password. Please try again.')
+          const signInError = (typeof result === 'object' && result && 'error' in result)
+            ? (result as { error?: string }).error
+            : undefined
+          console.log('[Login] Sign-in failed with error:', signInError)
+          setError(signInError || 'Invalid email or password. Please try again.')
           setLoading(false)
         }
       } else {

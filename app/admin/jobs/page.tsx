@@ -3,7 +3,6 @@ import { redirect } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import { formatDate, getStatusColor, daysUntilExpiry } from '@/lib/utils'
-import ApproveJobButton from './ApproveJobButton'
 import JobActionButtons from './JobActionButtons'
 
 export default async function AdminJobsPage() {
@@ -114,7 +113,6 @@ export default async function AdminJobsPage() {
                       </td>
                       <td className="px-6 py-4 text-sm">
                         <div className="flex gap-4">
-                          <ApproveJobButton jobId={job.id} status={job.status} />
                           <JobActionButtons jobId={job.id} jobTitle={job.title} isExpired={isExpired} />
                         </div>
                       </td>
