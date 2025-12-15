@@ -29,12 +29,12 @@ export const authConfig: NextAuthConfig = {
 
           if (!user) {
             console.log('[Auth] User not found:', email)
-            return null
+            throw new Error('Invalid email or password')
           }
 
           if (!user.password) {
             console.log('[Auth] User has no password hash:', email)
-            return null
+            throw new Error('Invalid email or password')
           }
 
           console.log('[Auth] User found, comparing passwords...')
@@ -43,7 +43,7 @@ export const authConfig: NextAuthConfig = {
 
           if (!isPasswordValid) {
             console.log('[Auth] Password mismatch for:', email)
-            return null
+            throw new Error('Invalid email or password')
           }
 
           console.log('[Auth] Authentication successful for:', email)
@@ -54,9 +54,9 @@ export const authConfig: NextAuthConfig = {
             name: user.name,
             role: user.role,
           }
-        } catch (error) {
+        } catch (error: any) {
           console.error('[Auth] Error during authentication:', error)
-          return null
+          throw new Error(error.message || 'Authentication failed')
         }
       },
     }),

@@ -21,30 +21,63 @@ export default function LoginPage() {
     setLoading(true)
 
     try {
-      const result = await signIn('credentials', {
+      console.log('[Login] Submitting login with email:', formData.email)
+
+      // Add timeout protection
+      const signInPromise = signIn('credentials', {
         email: formData.email,
         password: formData.password,
         redirect: false,
       })
 
-      if (result?.error) {
-        setError('Invalid email or password')
-      } else {
-        // Fetch session to check user role
-        const response = await fetch('/api/auth/session')
-        const session = await response.json()
-        
-        // Redirect based on role
-        if (session?.user?.role === 'ADMIN') {
-          router.push('/admin')
-        } else {
-          router.push('/jobs')
-        }
-        router.refresh()
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(
+          () => reject(new Error('Sign-in request timed out. Please check your internet connection and try again.')),
+          10000 // 10 second timeout
+        )
+      )
+
+      const result = await Promise.race([signInPromise, timeoutPromise])
+      console.log('[Login] Sign-in result:', result)
+
+      if (!result) {
+        console.log('[Login] No result returned from signIn')
+        setError('Sign-in failed. Please try again.')
+        setLoading(false)
+        return
       }
-    } catch (err) {
-      setError('Something went wrong. Please try again.')
-    } finally {
+
+      if (result && typeof result === 'object' && 'ok' in result) {
+        if (result.ok) {
+          console.log('[Login] Sign-in successful, fetching session...')
+          const response = await fetch('/api/auth/session')
+          const session = await response.json()
+          console.log('[Login] Session data:', session)
+
+          if (session?.user) {
+            console.log('[Login] Redirecting based on role:', session.user.role)
+            const redirectPath = session.user.role === 'ADMIN' ? '/admin' : '/jobs'
+            router.push(redirectPath)
+            router.refresh()
+          } else {
+            console.error('[Login] Session exists but no user data')
+            setError('Failed to retrieve user information. Please try again.')
+            setLoading(false)
+          }
+        } else {
+          console.log('[Login] Sign-in failed with error:', result.error)
+          setError(result.error || 'Invalid email or password. Please try again.')
+          setLoading(false)
+        }
+      } else {
+        console.error('[Login] Unexpected sign-in result format:', result)
+        setError('An unexpected error occurred. Please try again.')
+        setLoading(false)
+      }
+    } catch (err: any) {
+      console.error('[Login] Error during sign-in:', err)
+      const errorMessage = err?.message || 'Sign-in failed. Please check your credentials and try again.'
+      setError(errorMessage)
       setLoading(false)
     }
   }
