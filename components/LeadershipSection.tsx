@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { fadeInUpVariants, scaleInVariants } from '@/lib/animations'
 import { useScrollReveal } from '@/lib/useAnimations'
 
@@ -45,11 +46,11 @@ export default function LeadershipSection() {
                   whileHover={{ scale: 1.05 }}
                   className="relative w-48 h-48 md:w-56 md:h-56 rounded-xl overflow-hidden bg-gradient-to-br from-amber-100 to-amber-50 border-4 border-[#e0d9c7] group"
                 >
-                  {/* Professional photo - replace with actual Bob Houston image */}
+                  {/* FreightThis Logo as profile image */}
                   <div
                     className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
                     style={{
-                      backgroundImage: 'url(https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=2787&auto=format&fit=crop)',
+                      backgroundImage: 'url(/WhatsApp_Image_2025-12-12_at_1.36.44_AM-removebg-preview.png)',
                     }}
                   />
                   
