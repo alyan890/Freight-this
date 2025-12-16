@@ -6,14 +6,14 @@ import { useScrollReveal } from '@/lib/useAnimations'
 
 // Sample partner logos (in real app, these would be images)
 const partners = [
-  { id: 1, name: 'TruckFlow', logo: 'TF' },
-  { id: 2, name: 'LogisticsHub', logo: 'LH' },
-  { id: 3, name: 'CargoExpress', logo: 'CE' },
-  { id: 4, name: 'ShipMaster', logo: 'SM' },
-  { id: 5, name: 'TransNetwork', logo: 'TN' },
-  { id: 6, name: 'FreightCo', logo: 'FC' },
-  { id: 7, name: 'RoadLink', logo: 'RL' },
-  { id: 8, name: 'DistroHub', logo: 'DH' },
+  { id: 1, name: 'Oway.io', logo: 'TF' },
+  { id: 2, name: 'Carrier1.com', logo: 'LH' },
+  { id: 3, name: 'Envoy.ai', logo: 'CE' },
+  { id: 4, name: 'Verified Carrier', logo: 'SM' },
+  { id: 5, name: 'Oway.io', logo: 'TN' },
+  { id: 6, name: 'Carrier1.com', logo: 'FC' },
+  { id: 7, name: 'Envoy.ai', logo: 'RL' },
+  { id: 8, name: 'Verified Carrier', logo: 'DH' },
 ]
 
 export default function PartnersSection() {
