@@ -1,8 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
 
-export default function ContactPage() {
+function ContactForm() {
+  const searchParams = useSearchParams()
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -12,7 +14,37 @@ export default function ContactPage() {
     email: '',
     subject: '',
     message: '',
+    requestType: '',
+    category: '',
   })
+
+  // Pre-fill form based on query parameters
+  useEffect(() => {
+    const type = searchParams.get('type')
+    const category = searchParams.get('category')
+    
+    let subject = formData.subject
+    let message = formData.message
+    
+    if (type === 'buy-solution') {
+      subject = 'Interested in Buying a Solution'
+      message = 'I am interested in finding a solution for my transportation needs. Please help me find the right option.'
+    } else if (type === 'sell-solution') {
+      subject = 'Interested in Selling a Solution'
+      message = 'I would like to connect with potential customers without the usual sales pressure. Please tell me more about how I can be featured.'
+    } else if (category) {
+      subject = `Inquiry about ${category.charAt(0).toUpperCase() + category.slice(1)} Transportation`
+      message = `I would like to learn more about your ${category} transportation solutions.`
+    }
+    
+    setFormData(prev => ({
+      ...prev,
+      subject,
+      message,
+      requestType: type || '',
+      category: category || '',
+    }))
+  }, [searchParams])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -35,7 +67,7 @@ export default function ContactPage() {
       }
 
       setSuccess(true)
-      setFormData({ name: '', email: '', subject: '', message: '' })
+      setFormData({ name: '', email: '', subject: '', message: '', requestType: '', category: '' })
       setTimeout(() => setSuccess(false), 5000)
     } catch (err: any) {
       setError(err.message || 'Something went wrong')
@@ -203,5 +235,18 @@ export default function ContactPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function ContactPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#faf8f3] flex items-center justify-center">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-amber-600 mx-auto"></div>
+        <p className="mt-4 text-gray-600">Loading...</p>
+      </div>
+    </div>}>
+      <ContactForm />
+    </Suspense>
   )
 }

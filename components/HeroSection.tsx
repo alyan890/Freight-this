@@ -65,39 +65,54 @@ export default function HeroSection() {
             custom={1}
             className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight"
           >
-            Find Your Dream Job with{' '}
+            Where Transportation Buyers and{' '}
             <span className="bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">
-              FreightThis
+              Sellers Meet
             </span>
           </motion.h1>
 
           {/* Subheading */}
-          <motion.p
-            variants={fadeInUpVariants}
-            custom={2}
-            className="text-lg md:text-xl text-gray-200 mb-10 max-w-3xl mx-auto leading-relaxed"
-          >
-            Connect with top employers and discover opportunities that match your skills and aspirations. Your next career move starts here with transparency, integrity, and innovation.
-          </motion.p>
+          <div className="space-y-6 mb-10 max-w-4xl mx-auto">
+            <motion.div
+              variants={fadeInUpVariants}
+              custom={2}
+              className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6"
+            >
+              <h3 className="text-amber-300 font-bold text-lg mb-3">For Buyers:</h3>
+              <p className="text-gray-200 leading-relaxed">
+                Eliminate the endless stream of emails and phone calls from sales people. Get real solutions vetted for you that meet your needs. Let us do the work at no charge!!
+              </p>
+            </motion.div>
+            <motion.div
+              variants={fadeInUpVariants}
+              custom={3}
+              className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6"
+            >
+              <h3 className="text-amber-300 font-bold text-lg mb-3">For Sellers:</h3>
+              <p className="text-gray-200 leading-relaxed">
+                Are you interested in finding customers without bothering them with a constant barrage of emails/phone calls?
+              </p>
+            </motion.div>
+          </div>
 
           {/* CTA Buttons */}
-          <motion.div variants={fadeInUpVariants} custom={3} className="flex flex-col sm:flex-row gap-4 justify-center">
+          <motion.div variants={fadeInUpVariants} custom={4} className="flex flex-col sm:flex-row gap-4 justify-center">
             <motion.div variants={buttonHoverVariants} initial="initial" whileHover="hover" whileTap="tap">
               <Link
-                href="/jobs"
+                href="/contact?type=buy-solution"
                 className="inline-block bg-gradient-to-r from-amber-500 to-amber-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-xl transition-all duration-300 relative group"
               >
-                <span className="relative z-10">Browse Jobs</span>
+                <span className="relative z-10">Buy a Solution</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-amber-600 to-amber-700 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </Link>
             </motion.div>
 
             <motion.div variants={buttonHoverVariants} initial="initial" whileHover="hover" whileTap="tap">
               <Link
-                href="/jobs/post"
+                href="/contact?type=sell-solution"
                 className="inline-block bg-white/10 text-amber-200 border-2 border-amber-500 px-8 py-4 rounded-lg text-lg font-semibold backdrop-blur hover:bg-white/20 hover:shadow-lg transition-all duration-300"
               >
-                Post a Job
+                Sell a Solution
               </Link>
             </motion.div>
           </motion.div>

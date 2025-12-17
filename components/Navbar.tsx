@@ -78,6 +78,14 @@ export default function Navbar() {
 
           {/* Auth Buttons / User Menu */}
           <div className="flex items-center space-x-4">
+            {/* Post a Job Button - always visible */}
+            <Link
+              href="/jobs/post"
+              className="hidden md:inline-block bg-gradient-to-r from-amber-600 to-amber-700 text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:from-amber-700 hover:to-amber-800 hover:shadow-lg hover:scale-105 transition-all duration-300 transform"
+            >
+              Post a Job
+            </Link>
+            
             {session ? (
               <UserMenu />
             ) : (

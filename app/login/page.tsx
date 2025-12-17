@@ -1,12 +1,13 @@
 'use client'
 
 import { useState } from 'react'
-import { signIn } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
 export default function LoginPage() {
   const router = useRouter()
+  const { update } = useSession()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -49,7 +50,15 @@ export default function LoginPage() {
 
       if (result && typeof result === 'object' && 'ok' in result) {
         if (result.ok) {
-          console.log('[Login] Sign-in successful, fetching session...')
+          console.log('[Login] Sign-in successful, updating session...')
+          
+          // Update session to ensure it's fresh
+          await update()
+          
+          // Small delay to ensure session is updated
+          await new Promise(resolve => setTimeout(resolve, 100))
+          
+          // Get fresh session data
           const response = await fetch('/api/auth/session')
           const session = await response.json()
           console.log('[Login] Session data:', session)
@@ -60,9 +69,9 @@ export default function LoginPage() {
             router.push(redirectPath)
             router.refresh()
           } else {
-            console.error('[Login] Session exists but no user data')
-            setError('Failed to retrieve user information. Please try again.')
-            setLoading(false)
+            console.log('[Login] No user in session, redirecting to /jobs anyway')
+            router.push('/jobs')
+            router.refresh()
           }
         } else {
           const signInError = (typeof result === 'object' && result && 'error' in result)

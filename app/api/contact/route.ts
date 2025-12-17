@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { contactSchema } from '@/lib/validations'
 import { ZodError } from 'zod'
+import sgMail from '@sendgrid/mail'
+
+// Initialize SendGrid
+if (process.env.SENDGRID_API_KEY) {
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -9,11 +15,48 @@ export async function POST(request: NextRequest) {
     // Validate input
     const validatedData = contactSchema.parse(body)
 
-    // Here you would typically send an email to admin
-    // For now, we'll just return success
-    console.log('Contact form submission:', validatedData)
+    // Extract additional context from request
+    const { requestType, category, ...contactData } = body
 
-    // You can integrate with SendGrid here similar to other email functions
+    // Build email content
+    let emailContent = `
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+  <h2 style="color: #b45309;">New Contact Form Submission</h2>
+  
+  <div style="background-color: #f7f0e6; padding: 20px; border-radius: 8px; margin: 20px 0;">
+    <p><strong>Name:</strong> ${validatedData.name}</p>
+    <p><strong>Email:</strong> ${validatedData.email}</p>
+    <p><strong>Subject:</strong> ${validatedData.subject}</p>
+    ${requestType ? `<p><strong>Request Type:</strong> ${requestType}</p>` : ''}
+    ${category ? `<p><strong>Category:</strong> ${category}</p>` : ''}
+  </div>
+  
+  <div style="background-color: #ffffff; padding: 20px; border-left: 4px solid #b45309; margin: 20px 0;">
+    <h3>Message:</h3>
+    <p style="white-space: pre-wrap;">${validatedData.message}</p>
+  </div>
+  
+  <p style="color: #666; font-size: 12px;">
+    This email was sent from the FreightThis contact form.
+  </p>
+</div>
+    `
+
+    // Send email if SendGrid is configured
+    if (process.env.SENDGRID_API_KEY && process.env.ADMIN_EMAIL) {
+      const msg = {
+        to: process.env.ADMIN_EMAIL,
+        from: process.env.SENDGRID_FROM_EMAIL || 'noreply@freightthis.com',
+        replyTo: validatedData.email,
+        subject: `Contact Form: ${validatedData.subject}`,
+        html: emailContent,
+      }
+
+      await sgMail.send(msg)
+      console.log('Contact email sent successfully to', process.env.ADMIN_EMAIL)
+    } else {
+      console.log('SendGrid not configured. Contact form data:', validatedData)
+    }
 
     return NextResponse.json(
       { message: 'Message sent successfully' },

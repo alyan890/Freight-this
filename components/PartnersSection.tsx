@@ -20,7 +20,7 @@ export default function PartnersSection() {
   const [sectionRef, sectionVisible] = useScrollReveal(0.15)
 
   return (
-    <section className="py-24 bg-gradient-to-br from-[#f5f0e6] to-[#faf8f3] relative overflow-hidden">
+    <section className="py-24 bg-linear-to-br from-[#f5f0e6] to-[#faf8f3] relative overflow-hidden">
       {/* Subtle background parallax */}
       <motion.div
         initial={{ opacity: 0.05 }}
@@ -65,11 +65,11 @@ export default function PartnersSection() {
               <motion.div
                 key={`${partner.id}-1`}
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="flex-shrink-0 group cursor-pointer"
+                className="shrink-0 group cursor-pointer"
               >
                 <div className="bg-white rounded-lg border border-[#e0d9c7] p-8 h-20 w-32 flex items-center justify-center hover:shadow-lg hover:border-amber-300 transition-all duration-300">
                   <div className="text-center">
-                    <div className="text-2xl font-bold bg-gradient-to-r from-amber-600 to-amber-700 bg-clip-text text-transparent group-hover:from-amber-700 group-hover:to-amber-800 transition-all">
+                    <div className="text-2xl font-bold bg-linear-to-r from-amber-600 to-amber-700 bg-clip-text text-transparent group-hover:from-amber-700 group-hover:to-amber-800 transition-all">
                       {partner.logo}
                     </div>
                     <div className="text-xs text-gray-500 mt-1">{partner.name}</div>
@@ -83,11 +83,11 @@ export default function PartnersSection() {
               <motion.div
                 key={`${partner.id}-2`}
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="flex-shrink-0 group cursor-pointer"
+                className="shrink-0 group cursor-pointer"
               >
                 <div className="bg-white rounded-lg border border-[#e0d9c7] p-8 h-20 w-32 flex items-center justify-center hover:shadow-lg hover:border-amber-300 transition-all duration-300">
                   <div className="text-center">
-                    <div className="text-2xl font-bold bg-gradient-to-r from-amber-600 to-amber-700 bg-clip-text text-transparent group-hover:from-amber-700 group-hover:to-amber-800 transition-all">
+                    <div className="text-2xl font-bold bg-linear-to-r from-amber-600 to-amber-700 bg-clip-text text-transparent group-hover:from-amber-700 group-hover:to-amber-800 transition-all">
                       {partner.logo}
                     </div>
                     <div className="text-xs text-gray-500 mt-1">{partner.name}</div>
@@ -98,8 +98,8 @@ export default function PartnersSection() {
           </motion.div>
 
           {/* Gradient fade on edges */}
-          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#f5f0e6] to-transparent pointer-events-none" />
-          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#f5f0e6] to-transparent pointer-events-none" />
+          <div className="absolute inset-y-0 left-0 w-32 bg-linear-to-r from-[#f5f0e6] to-transparent pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-32 bg-linear-to-l from-[#f5f0e6] to-transparent pointer-events-none" />
         </div>
 
         {/* Trust stats below carousel */}

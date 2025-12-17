@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { fadeInUpVariants, scaleInVariants } from '@/lib/animations'
@@ -20,10 +21,10 @@ export default function LeadershipSection() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Our Leadership
+            About FreightThis
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Guided by industry veterans with decades of experience in transportation and logistics.
+            Connecting transportation buyers and sellers with integrity and transparency
           </p>
         </motion.div>
 
@@ -70,43 +71,26 @@ export default function LeadershipSection() {
                 className="flex flex-col justify-center"
               >
                 <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-                  Bob Houston
+                  Our Mission
                 </h3>
 
                 <p className="text-amber-700 font-semibold text-lg mb-6">
-                  Founder & CEO
+                  Revolutionizing Transportation Connections
                 </p>
 
                 <div className="space-y-4 text-gray-700 leading-relaxed">
                   <p>
-                    Bob Houston brings over 25 years of experience in transportation, logistics, and talent recruitment. As founder and CEO of FreightThis, he's revolutionizing how companies connect with top talent in the industry.
+                    FreightThis is dedicated to transforming how transportation buyers and sellers connect. We eliminate the noise of endless sales calls and emails, creating a trusted platform where real solutions meet genuine needs.
                   </p>
 
                   <p>
-                    With a deep understanding of the unique challenges faced by transportation professionals, Bob envisioned a platform that prioritizes transparency, integrity, and real connections. His commitment to excellence has made FreightThis a trusted name in freight logistics recruitment.
+                    For buyers, we provide a curated marketplace of vetted solutions tailored to your specific requirements—at no charge. For sellers, we offer a dignified way to reach potential customers without the traditional high-pressure tactics.
                   </p>
 
                   <p>
-                    A thought leader in the industry, Bob regularly speaks at transportation conferences and contributes to discussions on workforce innovation and supply chain excellence.
+                    Our commitment is simple: connect the right people with the right solutions through transparency, integrity, and respect for everyone's time.
                   </p>
                 </div>
-
-                {/* Social Links (if needed) */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={sectionVisible ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ delay: 0.4 }}
-                  className="flex gap-4 mt-8"
-                >
-                  {['LinkedIn', 'Twitter', 'Industry Blog'].map((link) => (
-                    <button
-                      key={link}
-                      className="px-4 py-2 text-sm font-medium text-amber-700 border border-amber-700 rounded-lg hover:bg-amber-50 transition-colors duration-300"
-                    >
-                      {link}
-                    </button>
-                  ))}
-                </motion.div>
               </motion.div>
             </div>
           </div>
@@ -123,12 +107,11 @@ export default function LeadershipSection() {
             Our Values
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             {[
-              { icon: '✓', title: 'Integrity', desc: 'Verified jobs, honest practices' },
-              { icon: '◆', title: 'Transparency', desc: 'Clear communication always' },
-              { icon: '↗', title: 'Innovation', desc: 'Continuous improvement mindset' },
-              { icon: '◉', title: 'Community', desc: 'Supporting professional growth' },
+              { icon: '✓', title: 'Integrity', desc: 'Vetted, reputable service and solutions providers' },
+              { icon: '◉', title: 'Community', desc: 'Building a community where professionals support each other\'s growth' },
+              { icon: '↗', title: 'Innovation', desc: 'Continuously improving our platform with new features; kindly share feedback' },
             ].map((value, i) => (
               <motion.div
                 key={i}
@@ -150,6 +133,29 @@ export default function LeadershipSection() {
               </motion.div>
             ))}
           </div>
+
+          {/* How It Works Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={sectionVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ delay: 0.6 }}
+            className="bg-gradient-to-br from-amber-50 to-amber-100/50 rounded-2xl p-8 md:p-12 border border-amber-200"
+          >
+            <h3 className="text-2xl font-bold text-gray-900 text-center mb-6">
+              How It Works
+            </h3>
+            <p className="text-lg text-gray-700 text-center max-w-3xl mx-auto leading-relaxed">
+              Tell us what you're looking for along with timeframe and budget (if you know), and we'll present the best options for you to explore.
+            </p>
+            <div className="flex justify-center mt-8">
+              <Link
+                href="/contact"
+                className="inline-block bg-gradient-to-r from-amber-600 to-amber-700 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-amber-700 hover:to-amber-800 hover:shadow-xl transition-all duration-300"
+              >
+                Get Started
+              </Link>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
