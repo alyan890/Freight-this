@@ -151,7 +151,7 @@ export async function POST(request: NextRequest) {
           message: validatedData.message,
           resumeUrl: urlData.publicUrl,
           jobPosterEmail: job.user?.email || job.contactEmail,
-          jobPosterName: job.user?.name,
+          jobPosterName: job.user?.name || undefined,
         }),
       ])
     } catch (emailError) {
