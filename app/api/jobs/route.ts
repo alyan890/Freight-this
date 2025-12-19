@@ -75,8 +75,8 @@ export async function POST(request: NextRequest) {
     // Validate input
     const validatedData = jobPostSchema.parse(body)
 
-    // Calculate expiry date (30 days from now)
-    const expiryDays = parseInt(process.env.JOB_EXPIRY_DAYS || '30')
+    // Calculate expiry date (90 days from now)
+    const expiryDays = parseInt(process.env.JOB_EXPIRY_DAYS || '90')
     const expiresAt = calculateExpiryDate(expiryDays)
 
     // Create job post

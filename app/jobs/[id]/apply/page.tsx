@@ -10,6 +10,7 @@ export default function ApplyPage() {
   
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [success, setSuccess] = useState(false)
 
   const [formData, setFormData] = useState({
     applicantName: '',
@@ -22,6 +23,7 @@ export default function ApplyPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError(null)
+    setSuccess(false)
     setLoading(true)
 
     if (!resumeFile) {
@@ -49,10 +51,17 @@ export default function ApplyPage() {
         throw new Error(data.error || 'Failed to submit application')
       }
 
-      // Redirect to success page
-      router.push(`/jobs/${jobId}?applied=true`)
+      // Show success message
+      setSuccess(true)
+      setFormData({ applicantName: '', applicantEmail: '', message: '' })
+      setResumeFile(null)
+      
+      // Redirect after 2 seconds
+      setTimeout(() => {
+        router.push(`/jobs/${jobId}?applied=true`)
+      }, 2000)
     } catch (err: any) {
-      setError(err.message || 'Something went wrong')
+      setError(err.message || 'Failed to submit application')
     } finally {
       setLoading(false)
     }
@@ -69,6 +78,12 @@ export default function ApplyPage() {
         </div>
 
         <div className="bg-white rounded-lg border border-[#e0d9c7] p-8">
+          {success && (
+            <div className="mb-6 bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-md">
+              ✓ Application has been submitted successfully! Redirecting...
+            </div>
+          )}
+
           {error && (
             <div className="mb-6 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md">
               {error}

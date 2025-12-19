@@ -24,7 +24,7 @@ export function isJobExpired(expiresAt: Date | string): boolean {
 }
 
 // Calculate expiry date (30 days from now or custom days)
-export function calculateExpiryDate(days: number = 30): Date {
+export function calculateExpiryDate(days: number = 90): Date {
   const date = new Date()
   date.setDate(date.getDate() + days)
   return date

@@ -2,13 +2,16 @@
 
 import Link from 'next/link'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
+import SolutionRequestModal from './SolutionRequestModal'
 import { fadeInUpVariants, slideDownVariants, buttonHoverVariants } from '@/lib/animations'
 import { useScrollReveal } from '@/lib/useAnimations'
 
 export default function HeroSection() {
   const [contentRef, contentVisible] = useScrollReveal(0.1)
-  const heroRef = useRef<HTMLDivElement | null>(null)
+    const heroRef = useRef<HTMLDivElement | null>(null)
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [requestType, setRequestType] = useState<'Find' | 'Sell' | null>(null)
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] })
   const parallaxY = useTransform(scrollYProgress, [0, 1], ['0%', '40%'])
 
@@ -65,10 +68,7 @@ export default function HeroSection() {
             custom={1}
             className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight"
           >
-            Where Transportation Buyers and{' '}
-            <span className="bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">
-              Sellers Meet
-            </span>
+              Where transportation buyers and sellers meet
           </motion.h1>
 
           {/* Subheading */}
@@ -81,6 +81,7 @@ export default function HeroSection() {
               <h3 className="text-amber-300 font-bold text-lg mb-3">For Buyers:</h3>
               <p className="text-gray-200 leading-relaxed">
                 Eliminate the endless stream of emails and phone calls from sales people. Get real solutions vetted for you that meet your needs. Let us do the work at no charge!!
+                  Eliminate the endless stream of emails and phone calls from salespeople. Get real solutions vetted for you that meet your needs. Let us do the work — no charge.
               </p>
             </motion.div>
             <motion.div
@@ -91,6 +92,7 @@ export default function HeroSection() {
               <h3 className="text-amber-300 font-bold text-lg mb-3">For Sellers:</h3>
               <p className="text-gray-200 leading-relaxed">
                 Are you interested in finding customers without bothering them with a constant barrage of emails/phone calls?
+                  Are you interested in finding customers without bothering them with a constant barrage of emails and phone calls?
               </p>
             </motion.div>
           </div>
@@ -98,24 +100,32 @@ export default function HeroSection() {
           {/* CTA Buttons */}
           <motion.div variants={fadeInUpVariants} custom={4} className="flex flex-col sm:flex-row gap-4 justify-center">
             <motion.div variants={buttonHoverVariants} initial="initial" whileHover="hover" whileTap="tap">
-              <Link
-                href="/contact?type=buy-solution"
-                className="inline-block bg-gradient-to-r from-amber-500 to-amber-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-xl transition-all duration-300 relative group"
-              >
-                <span className="relative z-10">Buy a Solution</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-amber-600 to-amber-700 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </Link>
+                <button
+                  onClick={() => { setRequestType('Find'); setIsModalOpen(true) }}
+                  className="inline-block bg-gradient-to-r from-amber-500 to-amber-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-xl transition-all duration-300 relative group"
+                >
+                  <span className="relative z-10">Find a Solution</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-amber-600 to-amber-700 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </button>
             </motion.div>
 
             <motion.div variants={buttonHoverVariants} initial="initial" whileHover="hover" whileTap="tap">
-              <Link
-                href="/contact?type=sell-solution"
-                className="inline-block bg-white/10 text-amber-200 border-2 border-amber-500 px-8 py-4 rounded-lg text-lg font-semibold backdrop-blur hover:bg-white/20 hover:shadow-lg transition-all duration-300"
-              >
-                Sell a Solution
-              </Link>
+                <button
+                  onClick={() => { setRequestType('Sell'); setIsModalOpen(true) }}
+                  className="inline-block bg-white/10 text-amber-200 border-2 border-amber-500 px-8 py-4 rounded-lg text-lg font-semibold backdrop-blur hover:bg-white/20 hover:shadow-lg transition-all duration-300"
+                >
+                  Sell a Solution
+                </button>
             </motion.div>
           </motion.div>
+
+            {isModalOpen && (
+              <SolutionRequestModal
+                open={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                initialType={requestType}
+              />
+            )}
 
           {/* Stats Section Below Hero */}
           <motion.div variants={fadeInUpVariants} custom={4} className="mt-16 grid grid-cols-3 gap-8 text-center">

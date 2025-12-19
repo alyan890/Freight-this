@@ -413,7 +413,7 @@ export default function AboutPage() {
               {
                 number: '3',
                 title: 'Quality Assurance',
-                description: 'Every job posting is reviewed by our team before going live. Jobs automatically expire after 30 days to keep listings fresh and relevant.',
+                description: 'Every job posting is reviewed by our team before going live. Jobs automatically expire after 90 days to keep listings fresh and relevant.',
                 image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=2074&auto=format&fit=crop',
               },
             ].map((step, index) => (

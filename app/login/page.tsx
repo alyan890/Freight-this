@@ -5,7 +5,7 @@ import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter()
   const { update } = useSession()
   const [loading, setLoading] = useState(false)
@@ -49,36 +49,53 @@ export default function LoginPage() {
       }
 
       if (result && typeof result === 'object' && 'ok' in result) {
-        if (result.ok) {
-          console.log('[Login] Sign-in successful, updating session...')
-          
-          // Update session to ensure it's fresh
-          await update()
-          
-          // Small delay to ensure session is updated
-          await new Promise(resolve => setTimeout(resolve, 100))
-          
-          // Get fresh session data
-          const response = await fetch('/api/auth/session')
-          const session = await response.json()
-          console.log('[Login] Session data:', session)
+        const signInError = (typeof result === 'object' && result && 'error' in result)
+          ? (result as { error?: string }).error
+          : undefined
 
-          if (session?.user) {
-            console.log('[Login] Redirecting based on role:', session.user.role)
-            const redirectPath = session.user.role === 'ADMIN' ? '/admin' : '/jobs'
-            router.push(redirectPath)
-            router.refresh()
-          } else {
-            console.log('[Login] No user in session, redirecting to /jobs anyway')
-            router.push('/jobs')
-            router.refresh()
-          }
-        } else {
-          const signInError = (typeof result === 'object' && result && 'error' in result)
-            ? (result as { error?: string }).error
-            : undefined
+        // Handle failed sign-in early (wrong credentials, etc.)
+        if (!result.ok || signInError) {
           console.log('[Login] Sign-in failed with error:', signInError)
-          setError(signInError || 'Invalid email or password. Please try again.')
+          
+          // NextAuth returns 'credentials' as the error code for invalid credentials
+          // Map error codes to user-friendly messages
+          let userMessage = 'Invalid username or password'
+          if (signInError === 'credentials' || signInError === 'CredentialsSignin') {
+            userMessage = 'Invalid username or password'
+          } else if (signInError === 'AccessDenied') {
+            userMessage = 'Access denied. Please check your account status.'
+          } else if (signInError?.includes('timeout') || signInError?.includes('Timeout')) {
+            userMessage = 'Sign-in request timed out. Please try again.'
+          } else if (signInError) {
+            userMessage = signInError
+          }
+          
+          setError(userMessage)
+          setLoading(false)
+          return
+        }
+
+        console.log('[Login] Sign-in successful, updating session...')
+        
+        // Update session to ensure it's fresh
+        await update()
+        
+        // Small delay to ensure session is updated
+        await new Promise(resolve => setTimeout(resolve, 100))
+        
+        // Get fresh session data
+        const response = await fetch('/api/auth/session')
+        const session = await response.json()
+        console.log('[Login] Session data:', session)
+
+        if (session?.user) {
+          console.log('[Login] Redirecting based on role:', session.user.role)
+          const redirectPath = session.user.role === 'ADMIN' ? '/admin' : '/jobs'
+          router.push(redirectPath)
+          router.refresh()
+        } else {
+          console.error('[Login] Session exists but no user data')
+          setError('Failed to retrieve user information. Please try again.')
           setLoading(false)
         }
       } else {
@@ -112,7 +129,7 @@ export default function LoginPage() {
         <form onSubmit={handleSubmit} className="mt-8 space-y-6 bg-white p-8 rounded-lg border border-[#e0d9c7] shadow-sm">
           {error && (
             <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md text-sm">
-              {error}
+              {error === 'Configuration' ? 'Invalid configuration' : error}
             </div>
           )}
 
@@ -128,7 +145,10 @@ export default function LoginPage() {
                 autoComplete="email"
                 required
                 value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                onChange={(e) => {
+                  setFormData({ ...formData, email: e.target.value })
+                  setError(null)
+                }}
                 className="w-full px-4 py-2 border border-[#e0d9c7] rounded-md focus:ring-2 focus:ring-amber-700 focus:border-transparent"
                 placeholder="you@example.com"
               />
@@ -145,7 +165,10 @@ export default function LoginPage() {
                 autoComplete="current-password"
                 required
                 value={formData.password}
-                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                onChange={(e) => {
+                  setFormData({ ...formData, password: e.target.value })
+                  setError(null)
+                }}
                 className="w-full px-4 py-2 border border-[#e0d9c7] rounded-md focus:ring-2 focus:ring-amber-700 focus:border-transparent"
                 placeholder="••••••••"
               />
@@ -165,4 +188,8 @@ export default function LoginPage() {
       </div>
     </div>
   )
+}
+
+export default function LoginPage() {
+  return <LoginForm />
 }

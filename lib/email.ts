@@ -142,3 +142,45 @@ export async function sendApplicationConfirmationEmail(applicationData: {
     console.error('Error sending email:', error)
   }
 }
+
+// Send solution request to the provided contact email (plain-text)
+export async function sendSolutionRequestEmail(payload: {
+  toEmail: string
+  type: string
+  selectedItems: string[]
+  otherText?: string
+  contact: { fullName?: string; companyName?: string; email?: string; phone?: string }
+}) {
+  if (!process.env.SENDGRID_API_KEY) {
+    console.log('SendGrid not configured, skipping email')
+    return
+  }
+
+  const { toEmail, type, selectedItems, otherText, contact } = payload
+
+  const textParts = [
+    `Type: ${type}`,
+    `Selected Items:\n${selectedItems.length ? selectedItems.join('\n') : 'None'}`,
+    `Other: ${otherText || 'N/A'}`,
+    'Contact Details:',
+    `Name: ${contact.fullName || 'N/A'}`,
+    `Company: ${contact.companyName || 'N/A'}`,
+    `Email: ${contact.email || 'N/A'}`,
+    `Phone: ${contact.phone || 'N/A'}`,
+  ]
+
+  const msg = {
+    to: toEmail,
+    from: FROM_EMAIL,
+    subject: `Solution Request (${type})`,
+    text: textParts.join('\n\n'),
+  }
+
+  try {
+    await sgMail.send(msg)
+    console.log('Solution request email sent to', toEmail)
+  } catch (error) {
+    console.error('Error sending solution request email:', error)
+    throw error
+  }
+}

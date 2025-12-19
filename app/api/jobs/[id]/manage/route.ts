@@ -65,8 +65,8 @@ export async function PATCH(
 
     const { id: jobId } = await params
 
-    // Calculate new expiry date (30 days from now)
-    const expiryDays = parseInt(process.env.JOB_EXPIRY_DAYS || '30')
+    // Calculate new expiry date (90 days from now)
+    const expiryDays = parseInt(process.env.JOB_EXPIRY_DAYS || '90')
     const newExpiresAt = calculateExpiryDate(expiryDays)
 
     // Update job with new expiry date
@@ -80,7 +80,7 @@ export async function PATCH(
 
     return NextResponse.json({
       success: true,
-      message: 'Job renewed successfully for 30 more days',
+      message: 'Job renewed successfully for 90 more days',
       job,
     })
   } catch (error: any) {
