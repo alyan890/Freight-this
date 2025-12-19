@@ -143,6 +143,56 @@ export async function sendApplicationConfirmationEmail(applicationData: {
   }
 }
 
+// Send email to job poster when someone applies to their job
+export async function sendApplicationReceivedByJobPosterEmail(applicationData: {
+  jobTitle: string
+  applicantName: string
+  applicantEmail: string
+  message: string
+  resumeUrl: string
+  jobPosterEmail: string
+  jobPosterName?: string
+}) {
+  if (!process.env.SENDGRID_API_KEY) {
+    console.log('SendGrid not configured, skipping email')
+    return
+  }
+
+  const msg = {
+    to: applicationData.jobPosterEmail,
+    from: FROM_EMAIL,
+    subject: `New Application: ${applicationData.jobTitle}`,
+    text: `Hi ${applicationData.jobPosterName || 'there'},\n\nYou have received a new application for your job posting "${applicationData.jobTitle}".\n\nApplicant Details:\nName: ${applicationData.applicantName}\nEmail: ${applicationData.applicantEmail}\n\nMessage:\n${applicationData.message}\n\nResume: ${applicationData.resumeUrl}\n\nPlease log in to your account to review the full application and contact the applicant.`,
+    html: `
+      <h2>New Application Received</h2>
+      <p>Hi ${applicationData.jobPosterName || 'there'},</p>
+      <p>You have received a new application for your job posting <strong>"${applicationData.jobTitle}"</strong>.</p>
+      
+      <h3>Applicant Details:</h3>
+      <ul>
+        <li><strong>Name:</strong> ${applicationData.applicantName}</li>
+        <li><strong>Email:</strong> ${applicationData.applicantEmail}</li>
+      </ul>
+      
+      <h3>Application Message:</h3>
+      <p style="white-space: pre-wrap; background-color: #f5f5f5; padding: 15px; border-radius: 5px;">${applicationData.message}</p>
+      
+      <h3>Resume:</h3>
+      <p><a href="${applicationData.resumeUrl}">View/Download Resume</a></p>
+      
+      <p>Please log in to your account to review the full application and contact the applicant directly.</p>
+      <p>Best regards,<br/>FreightThis Team</p>
+    `,
+  }
+
+  try {
+    await sgMail.send(msg)
+    console.log('Application notification sent to job poster:', applicationData.jobPosterEmail)
+  } catch (error) {
+    console.error('Error sending application email to job poster:', error)
+  }
+}
+
 // Send solution request to the provided contact email (plain-text)
 export async function sendSolutionRequestEmail(payload: {
   toEmail: string

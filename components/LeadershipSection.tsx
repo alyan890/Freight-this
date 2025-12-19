@@ -51,7 +51,12 @@ export default function LeadershipSection() {
                   <div
                     className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
                     style={{
-                      backgroundImage: 'url(/WhatsApp_Image_2025-12-12_at_1.36.44_AM-removebg-preview.png)',
+                      backgroundImage: 'url(/PNG-1.png)',
+                      width: '100%',
+                      height:'110%',
+                      marginLeft: 'auto',
+                      marginRight: 'auto',
+                      marginTop: '30px',
                     }}
                   />
                   

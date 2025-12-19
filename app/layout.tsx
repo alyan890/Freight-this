@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   keywords: ['jobs', 'careers', 'job portal', 'employment', 'recruitment'],
   icons: {
     icon: [
-      { url: '/WhatsApp_Image_2025-12-12_at_1.36.44_AM-removebg-preview.png', type: 'image/png' },
+      { url: '/PNG-1.png', type: 'image/png' },
     ],
   },
   openGraph: {

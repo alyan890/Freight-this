@@ -145,7 +145,7 @@ export default function HeroSection() {
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-0"
       >
         <svg
           className="w-6 h-6 text-amber-300"
@@ -162,3 +162,4 @@ export default function HeroSection() {
     </section>
   )
 }
+

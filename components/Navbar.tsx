@@ -50,7 +50,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 relative">
-            <Image src="/WhatsApp_Image_2025-12-12_at_1.36.44_AM-removebg-preview.png" alt="FreightThis" width={90} height={90} priority />
+            <Image src="/PNG-1.png" alt="FreightThis" width={70} height={70} priority />
             <div className="text-2xl font-bold text-gray-800">
               Freight<span className="text-amber-700">This</span>
             </div>

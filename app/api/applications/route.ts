@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { supabaseAdmin, supabase } from '@/lib/supabase'
 import { applicationSchema } from '@/lib/validations'
-import { sendApplicationReceivedEmail, sendApplicationConfirmationEmail } from '@/lib/email'
+import { sendApplicationConfirmationEmail, sendApplicationReceivedByJobPosterEmail } from '@/lib/email'
 import { ZodError } from 'zod'
 
 export async function POST(request: NextRequest) {
@@ -55,6 +55,14 @@ export async function POST(request: NextRequest) {
     // Verify job exists and is approved
     const job = await prisma.jobPost.findUnique({
       where: { id: jobPostId },
+      include: {
+        user: {
+          select: {
+            email: true,
+            name: true,
+          },
+        },
+      },
     })
 
     if (!job) {
@@ -130,17 +138,20 @@ export async function POST(request: NextRequest) {
     // Send emails (don't block on email failures)
     try {
       await Promise.all([
-        sendApplicationReceivedEmail({
-          jobTitle: job.title,
-          applicantName: validatedData.applicantName,
-          applicantEmail: validatedData.applicantEmail,
-          message: validatedData.message,
-          jobContactEmail: job.contactEmail,
-        }),
         sendApplicationConfirmationEmail({
           jobTitle: job.title,
           applicantName: validatedData.applicantName,
           applicantEmail: validatedData.applicantEmail,
+        }),
+        // Send email to job poster
+        sendApplicationReceivedByJobPosterEmail({
+          jobTitle: job.title,
+          applicantName: validatedData.applicantName,
+          applicantEmail: validatedData.applicantEmail,
+          message: validatedData.message,
+          resumeUrl: urlData.publicUrl,
+          jobPosterEmail: job.user?.email || job.contactEmail,
+          jobPosterName: job.user?.name,
         }),
       ])
     } catch (emailError) {
