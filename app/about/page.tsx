@@ -227,7 +227,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* How It Works Section */}
+      {/* How It Works Section
       <section className="py-20 bg-gradient-to-br from-[#f5f0e6] to-[#faf8f3]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -291,7 +291,7 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-amber-600 to-amber-700">
