@@ -3,19 +3,17 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { fadeInUpVariants, buttonHoverVariants } from '@/lib/animations'
-import { useScrollReveal, useParallax } from '@/lib/useAnimations'
+import { useScrollReveal } from '@/lib/useAnimations'
 
 export default function CTASection() {
   const [sectionRef, sectionVisible] = useScrollReveal(0.2)
-  const [parallaxRef, parallaxProgress] = useParallax(40)
 
   return (
     <section
-      ref={parallaxRef}
       className="relative py-24 overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
     >
       {/* Freight Background Image */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0" style={{ backgroundAttachment: 'fixed' }}>
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -25,16 +23,13 @@ export default function CTASection() {
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/90 to-gray-900/95" />
       </div>
 
-      {/* Parallax Background Elements */}
-      <motion.div
-        style={{
-          y: parallaxProgress * 40,
-        }}
+      {/* Static Background Accents */}
+      <div
         className="absolute inset-0 pointer-events-none"
       >
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-600 rounded-full blur-3xl opacity-10" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-amber-700 rounded-full blur-3xl opacity-10" />
-      </motion.div>
+      </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div

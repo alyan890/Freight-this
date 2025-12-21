@@ -1,40 +1,40 @@
 import { Variants } from 'framer-motion'
 
-// Fade & Scale
+// Optimized Fade & Scale - Reduced duration and delays
 export const fadeInVariants: Variants = {
   hidden: { opacity: 0 },
   visible: (custom = 0) => ({
     opacity: 1,
     transition: {
-      delay: custom * 0.1,
-      duration: 0.6,
+      delay: custom * 0.05,
+      duration: 0.4,
       ease: 'easeOut',
     },
   }),
 }
 
 export const fadeInUpVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 20 },
   visible: (custom = 0) => ({
     opacity: 1,
     y: 0,
     transition: {
-      delay: custom * 0.1,
-      duration: 0.6,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      delay: custom * 0.05,
+      duration: 0.4,
+      ease: 'easeOut',
     },
   }),
 }
 
 export const slideDownVariants: Variants = {
-  hidden: { opacity: 0, y: -30 },
+  hidden: { opacity: 0, y: -20 },
   visible: (custom = 0) => ({
     opacity: 1,
     y: 0,
     transition: {
-      delay: custom * 0.1,
-      duration: 0.6,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      delay: custom * 0.05,
+      duration: 0.4,
+      ease: 'easeOut',
     },
   }),
 }
@@ -45,32 +45,32 @@ export const scaleInVariants: Variants = {
     opacity: 1,
     scale: 1,
     transition: {
-      delay: custom * 0.1,
-      duration: 0.6,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      delay: custom * 0.05,
+      duration: 0.3,
+      ease: 'easeOut',
     },
   }),
 }
 
-// Stagger Container
+// Optimized Stagger Container - Reduced stagger delay
 export const staggerContainerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
+      staggerChildren: 0.05,
+      delayChildren: 0.1,
     },
   },
 }
 
-// Hover Effects
+// Optimized Hover Effects - Reduced animation distance and duration
 export const hoverLiftVariants: Variants = {
   initial: { y: 0 },
   hover: {
-    y: -8,
+    y: -4,
     transition: {
-      duration: 0.3,
+      duration: 0.2,
       ease: 'easeOut',
     },
   },
@@ -79,38 +79,39 @@ export const hoverLiftVariants: Variants = {
 export const iconHoverVariants: Variants = {
   initial: { scale: 1, rotate: 0 },
   hover: {
-    scale: 1.15,
-    rotate: 6,
+    scale: 1.1,
+    rotate: 3,
     transition: {
-      duration: 0.3,
+      duration: 0.15,
       ease: 'easeOut',
     },
   },
 }
 
-// Button Variants
+// Optimized Button Variants - Reduced duration
 export const buttonHoverVariants: Variants = {
   initial: { scale: 1 },
   hover: {
-    scale: 1.05,
+    scale: 1.03,
     transition: {
-      duration: 0.2,
+      duration: 0.15,
       ease: 'easeOut',
     },
   },
   tap: {
-    scale: 0.95,
+    scale: 0.97,
   },
 }
 
-// Parallax-like effect using scroll
-export const parallaxVariants = (offset: number = 50): Variants => ({
+// Lightweight parallax using GPU acceleration
+export const parallaxVariants = (offset: number = 30): Variants => ({
   initial: { y: 0 },
   animate: (scrollProgress: number) => ({
     y: scrollProgress * offset,
     transition: {
       type: 'tween',
-      ease: 'easeOut',
+      ease: 'linear',
+      duration: 0,
     },
   }),
 })

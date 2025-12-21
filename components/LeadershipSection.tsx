@@ -43,30 +43,19 @@ export default function LeadershipSection() {
                 variants={scaleInVariants}
                 className="flex items-center justify-center"
               >
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  className="relative w-48 h-48 md:w-56 md:h-56 rounded-xl overflow-hidden bg-gradient-to-br from-amber-100 to-amber-50 border-4 border-[#e0d9c7] group"
+                <div
+                  className="relative w-48 h-48 md:w-56 md:h-56 rounded-xl overflow-hidden bg-gradient-to-br from-amber-100 to-amber-50 border-4 border-[#e0d9c7] group hover:shadow-lg transition-shadow duration-300 flex items-center justify-center p-4"
                 >
                   {/* FreightThis Logo as profile image */}
-                  <div
-                    className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
-                    style={{
-                      backgroundImage: 'url(/PNG-1.png)',
-                      width: '100%',
-                      height:'110%',
-                      marginLeft: 'auto',
-                      marginRight: 'auto',
-                      marginTop: '30px',
-                    }}
+                  <img 
+                    src="/PNG-1.png" 
+                    alt="FreightThis Logo"
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                   />
                   
                   {/* Hover accent */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    className="absolute inset-0 bg-gradient-to-t from-amber-600/20 to-transparent"
-                  />
-                </motion.div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-amber-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
               </motion.div>
 
               {/* Content Section */}

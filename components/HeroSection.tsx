@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useRef, useState } from 'react'
 import SolutionRequestModal from './SolutionRequestModal'
 import { fadeInUpVariants, slideDownVariants, buttonHoverVariants } from '@/lib/animations'
@@ -12,16 +12,14 @@ export default function HeroSection() {
     const heroRef = useRef<HTMLDivElement | null>(null)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [requestType, setRequestType] = useState<'Find' | 'Sell' | null>(null)
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] })
-  const parallaxY = useTransform(scrollYProgress, [0, 1], ['0%', '40%'])
 
   return (
     <section
       ref={heroRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#08111d] via-[#0c1f35] to-[#08111d]"
     >
-      {/* Parallax background freight image */}
-      <motion.div className="absolute inset-0" style={{ y: parallaxY }}>
+      {/* Static background freight image - CSS fixed instead of parallax */}
+      <div className="absolute inset-0" style={{ backgroundAttachment: 'fixed' }}>
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -30,22 +28,12 @@ export default function HeroSection() {
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#08111d]/88 via-[#0c1f35]/72 to-[#08111d]/88" />
-      </motion.div>
+      </div>
 
-      {/* Subtle animated background elements */}
+      {/* Subtle animated background elements - DISABLED for performance */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          initial={{ opacity: 0.25, scale: 1.2 }}
-          animate={{ opacity: 0.12, scale: 1 }}
-          transition={{ duration: 8, repeat: Infinity, repeatType: 'reverse' }}
-          className="absolute top-20 right-1/4 w-96 h-96 bg-cyan-300/40 rounded-full blur-3xl"
-        />
-        <motion.div
-          initial={{ opacity: 0.18, scale: 1 }}
-          animate={{ opacity: 0.1, scale: 1.1 }}
-          transition={{ duration: 10, repeat: Infinity, repeatType: 'reverse', delay: 1 }}
-          className="absolute bottom-32 left-1/3 w-96 h-96 bg-blue-300/35 rounded-full blur-3xl"
-        />
+        <div className="absolute top-20 right-1/4 w-96 h-96 bg-cyan-300/15 rounded-full blur-3xl" />
+        <div className="absolute bottom-32 left-1/3 w-96 h-96 bg-blue-300/10 rounded-full blur-3xl" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -66,51 +54,42 @@ export default function HeroSection() {
 
           {/* Subheading */}
           <div className="space-y-6 mb-10 max-w-4xl mx-auto">
-            <motion.div
-              variants={fadeInUpVariants}
-              custom={2}
-              className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6"
+            <div
+              className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 opacity-0 animate-fade-in"
+              style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}
             >
               <h3 className="text-amber-300 font-bold text-lg mb-3">For Buyers:</h3>
               <p className="text-gray-200 leading-relaxed">
-                Eliminate the endless stream of emails and phone calls from sales people. Get real solutions vetted for you that meet your needs. Let us do the work at no charge!!
-                  Eliminate the endless stream of emails and phone calls from salespeople. Get real solutions vetted for you that meet your needs. Let us do the work — no charge.
+                Eliminate the endless stream of emails and phone calls from salespeople. Get real solutions vetted for you that meet your needs. Let us do the work — no charge.
               </p>
-            </motion.div>
-            <motion.div
-              variants={fadeInUpVariants}
-              custom={3}
-              className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6"
+            </div>
+            <div
+              className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 opacity-0 animate-fade-in"
+              style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}
             >
               <h3 className="text-amber-300 font-bold text-lg mb-3">For Sellers:</h3>
               <p className="text-gray-200 leading-relaxed">
-                Are you interested in finding customers without bothering them with a constant barrage of emails/phone calls?
-                  Are you interested in finding customers without bothering them with a constant barrage of emails and phone calls?
+                Are you interested in finding customers without bothering them with a constant barrage of emails and phone calls?
               </p>
-            </motion.div>
+            </div>
           </div>
 
           {/* CTA Buttons */}
-          <motion.div variants={fadeInUpVariants} custom={4} className="flex flex-col sm:flex-row gap-4 justify-center">
-            <motion.div variants={buttonHoverVariants} initial="initial" whileHover="hover" whileTap="tap">
-                <button
-                  onClick={() => { setRequestType('Find'); setIsModalOpen(true) }}
-                  className="inline-block bg-gradient-to-r from-amber-500 to-amber-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-xl transition-all duration-300 relative group"
-                >
-                  <span className="relative z-10">I am looking for solutions</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-amber-600 to-amber-700 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </button>
-            </motion.div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              onClick={() => { setRequestType('Find'); setIsModalOpen(true) }}
+              className="inline-block bg-gradient-to-r from-amber-500 to-amber-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-xl hover:from-amber-600 hover:to-amber-700 transition-all duration-200 relative group"
+            >
+              <span className="relative z-10">I am looking for solutions</span>
+            </button>
 
-            <motion.div variants={buttonHoverVariants} initial="initial" whileHover="hover" whileTap="tap">
-                <button
-                  onClick={() => { setRequestType('Sell'); setIsModalOpen(true) }}
-                  className="inline-block bg-white/10 text-amber-200 border-2 border-amber-500 px-8 py-4 rounded-lg text-lg font-semibold backdrop-blur hover:bg-white/20 hover:shadow-lg transition-all duration-300"
-                >
-                  I'd like to be a vetted solutions provider
-                </button>
-            </motion.div>
-          </motion.div>
+            <button
+              onClick={() => { setRequestType('Sell'); setIsModalOpen(true) }}
+              className="inline-block bg-white/10 text-amber-200 border-2 border-amber-500 px-8 py-4 rounded-lg text-lg font-semibold backdrop-blur hover:bg-white/20 hover:shadow-lg hover:border-amber-400 transition-all duration-200"
+            >
+              I'd like to be a vetted solutions provider
+            </button>
+          </div>
 
             {isModalOpen && (
               <SolutionRequestModal
@@ -123,22 +102,20 @@ export default function HeroSection() {
           {/* Stats Section Below Hero */}
           <motion.div variants={fadeInUpVariants} custom={4} className="mt-16 grid grid-cols-3 gap-8 text-center">
             {[{ number: '1000+', label: 'Active Jobs' }, { number: '500+', label: 'Companies' }, { number: '5000+', label: 'Job Seekers' }].map((stat, i) => (
-              <motion.div key={i} whileHover={{ scale: 1.05, y: -5 }} className="group cursor-pointer">
-                <motion.div className="text-3xl md:text-4xl font-bold text-amber-300 mb-2 group-hover:text-amber-200 transition-colors">
+              <div key={i} className="group cursor-pointer hover:scale-105 transition-transform duration-200">
+                <div className="text-3xl md:text-4xl font-bold text-amber-300 mb-2 group-hover:text-amber-200 transition-colors">
                   {stat.number}
-                </motion.div>
+                </div>
                 <div className="text-sm text-gray-300">{stat.label}</div>
-              </motion.div>
+              </div>
             ))}
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-0"
+      {/* Scroll indicator - CSS animation only */}
+      <div
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-0 animate-bounce"
       >
         <svg
           className="w-6 h-6 text-amber-300"
@@ -151,7 +128,7 @@ export default function HeroSection() {
         >
           <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
         </svg>
-      </motion.div>
+      </div>
     </section>
   )
 }

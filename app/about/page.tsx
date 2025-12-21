@@ -1,23 +1,6 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
-import { useRef } from 'react'
-
-const fadeInUpVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0 },
-}
-
-const staggerContainerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-}
 
 const values = [
   {
@@ -60,110 +43,59 @@ const stats = [
 ]
 
 export default function AboutPage() {
-  const heroRef = useRef(null)
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start'],
-  })
-
-  const parallaxY = useTransform(scrollYProgress, [0, 1], ['0%', '50%'])
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.5])
-
   return (
     <div className="bg-[#faf8f3]">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-[80vh] overflow-hidden bg-gradient-to-br from-[#f5f0e6] to-[#faf8f3] flex items-center">
-        {/* Parallax Background Image */}
-        <motion.div
-          className="absolute inset-0"
-          style={{ y: parallaxY }}
-        >
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage: 'url(https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=2787&auto=format&fit=crop)',
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#faf8f3]/95 via-[#faf8f3]/85 to-[#faf8f3]/95" />
-        </motion.div>
+      <section className="relative min-h-[80vh] overflow-hidden bg-gradient-to-br from-[#f5f0e6] to-[#faf8f3] flex items-center">
+        {/* Static Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=2787&auto=format&fit=crop)',
+            backgroundAttachment: 'fixed',
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#faf8f3]/95 via-[#faf8f3]/85 to-[#faf8f3]/95" />
 
-        {/* Floating Elements */}
+        {/* Static Background Accents */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <motion.div
-            initial={{ opacity: 0.2, scale: 1 }}
-            animate={{ opacity: 0.1, scale: 1.1 }}
-            transition={{ duration: 8, repeat: Infinity, repeatType: 'reverse' }}
-            className="absolute top-20 right-1/4 w-96 h-96 bg-amber-200 rounded-full blur-3xl"
-          />
-          <motion.div
-            initial={{ opacity: 0.15, scale: 1.1 }}
-            animate={{ opacity: 0.08, scale: 1 }}
-            transition={{ duration: 10, repeat: Infinity, repeatType: 'reverse', delay: 1 }}
-            className="absolute bottom-20 left-1/4 w-96 h-96 bg-amber-100 rounded-full blur-3xl"
-          />
+          <div className="absolute top-20 right-1/4 w-96 h-96 bg-amber-200 rounded-full blur-3xl opacity-10" />
+          <div className="absolute bottom-20 left-1/3 w-96 h-96 bg-amber-100 rounded-full blur-3xl opacity-10" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-left"
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-block mb-6 px-4 py-2 bg-amber-100 text-amber-800 rounded-full text-sm font-semibold"
-            >
+          <div className="text-left">
+            <div className="inline-block mb-6 px-4 py-2 bg-amber-100 text-amber-800 rounded-full text-sm font-semibold">
               About FreightThis
-            </motion.div>
+            </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Welcome to the{' '}
-              <span className="bg-gradient-to-r from-amber-600 to-amber-800 bg-clip-text text-transparent">
-                Future of Hiring
-              </span>
+              Welcome to FreightThis
             </h1>
 
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
               We're revolutionizing the transportation and logistics industry by building a platform that prioritizes quality, transparency, and meaningful connections.
             </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-wrap gap-4"
-            >
+            <div className="flex flex-wrap gap-4">
               <a
                 href="/contact"
-                className="inline-block bg-gradient-to-r from-amber-600 to-amber-700 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-amber-700 hover:to-amber-800 transition-all shadow-lg hover:shadow-xl"
+                className="inline-block bg-gradient-to-r from-amber-600 to-amber-700 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-amber-700 hover:to-amber-800 transition-all duration-200 shadow-lg hover:shadow-xl"
               >
                 Get Started
               </a>
               <a
                 href="/supporters"
-                className="inline-block bg-white text-amber-700 border-2 border-amber-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-amber-50 transition-all shadow-sm hover:shadow-md"
+                className="inline-block bg-white text-amber-700 border-2 border-amber-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-amber-50 transition-all duration-200 shadow-sm hover:shadow-md"
               >
                 View Supporters
               </a>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
-          {/* Hero Image with Parallax */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            style={{ opacity }}
-            className="relative"
-          >
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-              className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl border-4 border-white"
-            >
+          {/* Hero Image */}
+          <div className="relative">
+            <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl border-4 border-white hover:shadow-3xl transition-shadow duration-300">
               <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
@@ -173,12 +105,7 @@ export default function AboutPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
 
               {/* Floating badge */}
-              <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-xl"
-              >
+              <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-xl">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-amber-600 to-amber-700 rounded-full flex items-center justify-center">
                     <svg className="w-6 h-6 text-white" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -190,66 +117,36 @@ export default function AboutPage() {
                     <div className="text-lg font-bold text-gray-900">100+ Companies</div>
                   </div>
                 </div>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
 
             {/* Decorative elements */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-              className="absolute -top-8 -right-8 w-24 h-24 bg-amber-200 rounded-full opacity-50 blur-xl"
-            />
-            <motion.div
-              animate={{ rotate: -360 }}
-              transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-              className="absolute -bottom-8 -left-8 w-32 h-32 bg-amber-100 rounded-full opacity-50 blur-xl"
-            />
-          </motion.div>
+            <div className="absolute -top-8 -right-8 w-24 h-24 bg-amber-200 rounded-full opacity-50 blur-xl" />
+            <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-amber-100 rounded-full opacity-50 blur-xl" />
+          </div>
         </div>
       </section>
 
       {/* Stats Section */}
       <section className="py-16 bg-white border-y border-[#e0d9c7]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            variants={staggerContainerVariants}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8"
-          >
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUpVariants}
-                className="text-center"
-              >
-                <motion.div
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ type: 'spring', stiffness: 200, delay: index * 0.1 }}
-                  className="text-4xl md:text-5xl font-bold text-amber-700 mb-2"
-                >
+              <div key={index} className="text-center">
+                <div className="text-4xl md:text-5xl font-bold text-amber-700 mb-2">
                   {stat.value}
-                </motion.div>
+                </div>
                 <div className="text-gray-600 font-medium">{stat.label}</div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Mission Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8 }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-          >
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 Our Mission
@@ -267,13 +164,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative h-96 rounded-2xl overflow-hidden shadow-2xl"
-            >
+            <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl hover:shadow-2xl transition-shadow duration-300">
               <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
@@ -281,60 +172,41 @@ export default function AboutPage() {
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Values Section with Image Cards */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Our Core Values
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               The principles that guide everything we do at FreightThis
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            variants={staggerContainerVariants}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {values.map((value, index) => (
-              <motion.div
+              <div
                 key={index}
-                variants={fadeInUpVariants}
-                whileHover={{ y: -8 }}
-                transition={{ duration: 0.3 }}
-                className="group relative bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl border border-[#e0d9c7]"
+                className="group relative bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl border border-[#e0d9c7] transition-all duration-300"
               >
                 {/* Image Background */}
                 <div className="relative h-48 overflow-hidden">
                   <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
                     style={{ backgroundImage: `url(${value.image})` }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                   
                   {/* Icon with professional background */}
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ type: 'spring', stiffness: 300 }}
-                    className="absolute bottom-4 left-4 w-16 h-16 bg-gradient-to-br from-amber-600 to-amber-700 rounded-xl flex items-center justify-center shadow-xl"
-                  >
+                  <div className="absolute bottom-4 left-4 w-16 h-16 bg-gradient-to-br from-amber-600 to-amber-700 rounded-xl flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
                     {value.icon}
-                  </motion.div>
+                  </div>
                 </div>
 
                 {/* Content */}
@@ -347,45 +219,27 @@ export default function AboutPage() {
                   </p>
 
                   {/* Animated underline */}
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: '100%' }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: index * 0.1 }}
-                    className="h-1 bg-gradient-to-r from-amber-600 to-amber-700 rounded-full mt-4"
-                  />
+                  <div className="h-1 bg-gradient-to-r from-amber-600 to-amber-700 rounded-full mt-4" />
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* How It Works Section */}
       <section className="py-20 bg-gradient-to-br from-[#f5f0e6] to-[#faf8f3]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               How It Works
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               A seamless experience for both job seekers and employers
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            variants={staggerContainerVariants}
-            className="space-y-8"
-          >
+          <div className="space-y-8">
             {[
               {
                 number: '1',
@@ -406,33 +260,23 @@ export default function AboutPage() {
                 image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=2074&auto=format&fit=crop',
               },
             ].map((step, index) => (
-              <motion.div
+              <div
                 key={index}
-                variants={fadeInUpVariants}
-                className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 items-center bg-white rounded-2xl p-8 shadow-lg border border-[#e0d9c7]`}
+                className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 items-center bg-white rounded-2xl p-8 shadow-lg border border-[#e0d9c7] hover:shadow-xl transition-shadow duration-300`}
               >
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  className="relative w-full lg:w-1/2 h-64 rounded-xl overflow-hidden"
-                >
+                <div className="relative w-full lg:w-1/2 h-64 rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300">
                   <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: `url(${step.image})` }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                </motion.div>
+                </div>
 
                 <div className="w-full lg:w-1/2">
                   <div className="flex items-start gap-4">
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ type: 'spring', stiffness: 200, delay: index * 0.1 }}
-                      className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-amber-600 to-amber-700 text-white rounded-full flex items-center justify-center font-bold text-xl shadow-lg"
-                    >
+                    <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-amber-600 to-amber-700 text-white rounded-full flex items-center justify-center font-bold text-xl shadow-lg">
                       {step.number}
-                    </motion.div>
+                    </div>
                     <div>
                       <h3 className="text-2xl font-bold text-gray-900 mb-3">
                         {step.title}
@@ -443,36 +287,29 @@ export default function AboutPage() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-amber-600 to-amber-700">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
+          <div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               FreightThis — Your trusted source for the right connections & opportunities
             </h2>
             <p className="text-xl text-amber-50 mb-8">
               We're constantly vetting and sharing the most up to date technology launches in our space.
             </p>
-            <motion.a
+            <a
               href="/contact"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-block bg-white text-amber-700 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-amber-50 transition-colors shadow-xl"
+              className="inline-block bg-white text-amber-700 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-amber-50 hover:scale-105 transition-all duration-200 shadow-xl"
             >
               Contact Us
-            </motion.a>
-          </motion.div>
+            </a>
+          </div>
         </div>
       </section>
     </div>
