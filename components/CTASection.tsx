@@ -85,10 +85,10 @@ export default function CTASection() {
               whileTap="tap"
             >
               <Link
-                href="/jobs"
+                href="/contact"
                 className="inline-block bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white px-10 py-4 rounded-lg text-lg font-semibold shadow-lg hover:shadow-amber-600/50 transition-all duration-300"
               >
-                Browse Opportunities
+                Get Started
               </Link>
             </motion.div>
 

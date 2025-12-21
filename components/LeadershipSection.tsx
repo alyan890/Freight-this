@@ -149,9 +149,20 @@ export default function LeadershipSection() {
             <h3 className="text-2xl font-bold text-gray-900 text-center mb-6">
               How It Works
             </h3>
-            <p className="text-lg text-gray-700 text-center max-w-3xl mx-auto leading-relaxed">
-              Tell us what you're looking for along with timeframe and budget (if you know), and we'll present the best options for you to explore.
-            </p>
+            <div className="text-lg text-gray-700 space-y-4 max-w-3xl mx-auto">
+              <p>
+                Complete the short request for services and we'll be in touch to get more details. Then it's up to us.
+              </p>
+              <p>
+                FreightThis is constantly vetting and updating reputable service providers in the transportation space. We're gathering data which includes service offering, years in business, reputation, leadership and customer testimonials. Let us be the first line of defense as you look to better your business processes.
+              </p>
+              <p>
+                After understanding your inquiry, we'll provide recommendations. And even schedule discovery meetings with those vendors of interest.
+              </p>
+              <p className="font-semibold text-amber-700">
+                We look forward to serving you.
+              </p>
+            </div>
             <div className="flex justify-center mt-8">
               <Link
                 href="/contact"

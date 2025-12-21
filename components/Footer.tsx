@@ -13,7 +13,7 @@ export default function Footer() {
               Freight<span className="text-amber-700">This</span>
             </h3>
             <p className="text-sm text-gray-600">
-              Your trusted job portal connecting talented professionals with great opportunities.
+              Your trusted source for the right connections & opportunities
             </p>
           </div>
 
@@ -32,8 +32,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/jobs" className="text-sm text-gray-600 hover:text-amber-700 transition-colors">
-                  Browse Jobs
+                <Link href="/supporters" className="text-sm text-gray-600 hover:text-amber-700 transition-colors">
+                  Supporters
                 </Link>
               </li>
               <li>
@@ -44,18 +44,18 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* For Employers */}
+          {/* Get Started */}
           <div>
-            <h4 className="text-sm font-semibold text-gray-800 mb-4">For Employers</h4>
+            <h4 className="text-sm font-semibold text-gray-800 mb-4">Get Started</h4>
             <ul className="space-y-2">
-              <li>
-                <Link href="/jobs/post" className="text-sm text-gray-600 hover:text-amber-700 transition-colors">
-                  Post a Job
-                </Link>
-              </li>
               <li>
                 <Link href="/signup" className="text-sm text-gray-600 hover:text-amber-700 transition-colors">
                   Create Account
+                </Link>
+              </li>
+              <li>
+                <Link href="/login" className="text-sm text-gray-600 hover:text-amber-700 transition-colors">
+                  Sign In
                 </Link>
               </li>
               <li>

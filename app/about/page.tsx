@@ -22,7 +22,7 @@ const staggerContainerVariants = {
 const values = [
   {
     title: 'Integrity',
-    description: 'We verify every job posting to ensure legitimacy and protect job seekers from fraudulent listings.',
+    description: 'Vetted, reputable service and solutions providers',
     icon: (
       <svg className="w-8 h-8 text-white" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
         <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -31,35 +31,24 @@ const values = [
     image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop',
   },
   {
-    title: 'Transparency',
-    description: 'Clear communication between employers and candidates is key to successful hiring. We facilitate honest conversations.',
-    icon: (
-      <svg className="w-8 h-8 text-white" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-        <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-      </svg>
-    ),
-    image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop',
-  },
-  {
-    title: 'Innovation',
-    description: 'We continuously improve our platform with new features and technologies to make job hunting and hiring easier.',
-    icon: (
-      <svg className="w-8 h-8 text-white" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-        <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-      </svg>
-    ),
-    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop',
-  },
-  {
     title: 'Community',
-    description: 'We are building more than a job board - we are creating a community where professionals support each others growth.',
+    description: 'We are building more than a portal — we are creating a community where professionals support each other\'s growth.',
     icon: (
       <svg className="w-8 h-8 text-white" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
         <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
       </svg>
     ),
     image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2232&auto=format&fit=crop',
+  },
+  {
+    title: 'Innovation',
+    description: 'We\'re continuously improving our platform with new features and technologies — kindly let us know what you think.',
+    icon: (
+      <svg className="w-8 h-8 text-white" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+        <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+      </svg>
+    ),
+    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop',
   },
 ]
 
@@ -148,16 +137,16 @@ export default function AboutPage() {
               className="flex flex-wrap gap-4"
             >
               <a
-                href="/jobs"
+                href="/contact"
                 className="inline-block bg-gradient-to-r from-amber-600 to-amber-700 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-amber-700 hover:to-amber-800 transition-all shadow-lg hover:shadow-xl"
               >
-                Explore Jobs
+                Get Started
               </a>
               <a
-                href="/contact"
+                href="/supporters"
                 className="inline-block bg-white text-amber-700 border-2 border-amber-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-amber-50 transition-all shadow-sm hover:shadow-md"
               >
-                Contact Us
+                View Supporters
               </a>
             </motion.div>
           </motion.div>
@@ -470,18 +459,18 @@ export default function AboutPage() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Ready to Get Started?
+              FreightThis — Your trusted source for the right connections & opportunities
             </h2>
             <p className="text-xl text-amber-50 mb-8">
-              Join thousands of professionals finding their next opportunity
+              We're constantly vetting and sharing the most up to date technology launches in our space.
             </p>
             <motion.a
-              href="/jobs"
+              href="/contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="inline-block bg-white text-amber-700 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-amber-50 transition-colors shadow-xl"
             >
-              Browse Jobs
+              Contact Us
             </motion.a>
           </motion.div>
         </div>

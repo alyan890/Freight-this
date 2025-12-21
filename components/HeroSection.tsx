@@ -55,13 +55,6 @@ export default function HeroSection() {
           animate={contentVisible ? 'visible' : 'hidden'}
           className="text-center"
         >
-          {/* Eyebrow text */}
-          <motion.div variants={fadeInUpVariants} custom={0} className="inline-block mb-6">
-            <span className="text-amber-200 font-semibold text-sm tracking-wider uppercase">
-              Welcome to the Future of Hiring
-            </span>
-          </motion.div>
-
           {/* Main Headline */}
           <motion.h1
             variants={slideDownVariants}
@@ -104,7 +97,7 @@ export default function HeroSection() {
                   onClick={() => { setRequestType('Find'); setIsModalOpen(true) }}
                   className="inline-block bg-gradient-to-r from-amber-500 to-amber-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-xl transition-all duration-300 relative group"
                 >
-                  <span className="relative z-10">Find a Solution</span>
+                  <span className="relative z-10">I am looking for solutions</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-amber-600 to-amber-700 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </button>
             </motion.div>
@@ -114,7 +107,7 @@ export default function HeroSection() {
                   onClick={() => { setRequestType('Sell'); setIsModalOpen(true) }}
                   className="inline-block bg-white/10 text-amber-200 border-2 border-amber-500 px-8 py-4 rounded-lg text-lg font-semibold backdrop-blur hover:bg-white/20 hover:shadow-lg transition-all duration-300"
                 >
-                  Sell a Solution
+                  I'd like to be a vetted solutions provider
                 </button>
             </motion.div>
           </motion.div>

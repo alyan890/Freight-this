@@ -16,7 +16,7 @@ export default function Navbar() {
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About Us' },
-    { href: '/jobs', label: 'Jobs' },
+    { href: '/supporters', label: 'Supporters' },
     { href: '/contact', label: 'Contact' },
   ]
 
@@ -120,12 +120,12 @@ export default function Navbar() {
             </svg>
           </button>
 
-          {/* Post a Job Button placed at the far right */}
+          {/* Create Account Button placed at the far right */}
           <Link
-            href="/jobs/post"
+            href="/signup"
             className="hidden md:inline-block bg-gradient-to-r from-amber-600 to-amber-700 text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:from-amber-700 hover:to-amber-800 hover:shadow-lg hover:scale-105 transition-all duration-300 transform"
           >
-            Post a Job
+            Create an Account
           </Link>
         </div>
 
@@ -177,13 +177,6 @@ export default function Navbar() {
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Sign Up
-                  </Link>
-                  <Link
-                    href="/jobs/post"
-                    className="block px-4 py-2 text-sm font-medium bg-gradient-to-r from-amber-600 to-amber-700 text-white rounded-md hover:from-amber-700 hover:to-amber-800 transition-colors text-center"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Post a Job
                   </Link>
                 </>
               )}
