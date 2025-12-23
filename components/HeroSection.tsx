@@ -100,7 +100,7 @@ export default function HeroSection() {
             )}
 
           {/* Stats Section Below Hero */}
-          <motion.div variants={fadeInUpVariants} custom={4} className="mt-16 grid grid-cols-3 gap-8 text-center">
+          {/* <motion.div variants={fadeInUpVariants} custom={4} className="mt-16 grid grid-cols-3 gap-8 text-center">
             {[{ number: '1000+', label: 'Active Jobs' }, { number: '500+', label: 'Companies' }, { number: '5000+', label: 'Job Seekers' }].map((stat, i) => (
               <div key={i} className="group cursor-pointer hover:scale-105 transition-transform duration-200">
                 <div className="text-3xl md:text-4xl font-bold text-amber-300 mb-2 group-hover:text-amber-200 transition-colors">
@@ -109,7 +109,7 @@ export default function HeroSection() {
                 <div className="text-sm text-gray-300">{stat.label}</div>
               </div>
             ))}
-          </motion.div>
+          </motion.div> */}
         </motion.div>
       </div>
 

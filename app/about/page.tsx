@@ -128,7 +128,7 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-white border-y border-[#e0d9c7]">
+      {/* <section className="py-16 bg-white border-y border-[#e0d9c7]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
@@ -141,7 +141,7 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Mission Section */}
       <section className="py-20">
@@ -154,6 +154,10 @@ export default function AboutPage() {
               <div className="space-y-4 text-gray-700 leading-relaxed">
                 <p>
                   At FreightThis, we believe that finding the right job should be simple, transparent, and rewarding. Our mission is to create a platform that connects talented professionals with companies that value their skills and potential.
+
+We're committed to building a job portal that prioritizes quality over quantity, ensuring that every job listing is vetted and every application is treated with respect.
+
+By leveraging technology and maintaining a human touch, we're transforming how the transportation industry approaches hiring and career development.
                 </p>
                 <p>
                   We're committed to building a job portal that prioritizes quality over quantity, ensuring that every job listing is vetted and every application is treated with respect.
@@ -290,7 +294,7 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
-        </div>
+        </div>0
       </section> */}
 
       {/* CTA Section */}

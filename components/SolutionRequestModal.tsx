@@ -36,6 +36,11 @@ const GROUPS: { title: string; items: string[] }[] = [
       'GPS & Asset Tracking',
       'Electronic Logging Devices (ELDs)',
       'Digital Freight Platforms',
+      'AI / Predictive Analytics',
+      'EDI / API Solutions',
+      'Route & Load Planning / Optimization',
+      'Financial / Invoice Management Software',
+      'Tracking Solutions',
     ],
   },
   {

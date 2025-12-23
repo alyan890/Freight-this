@@ -65,25 +65,49 @@ export default function LeadershipSection() {
                 className="flex flex-col justify-center"
               >
                 <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-                  Our Mission
+                  Bob Houston
                 </h3>
 
                 <p className="text-amber-700 font-semibold text-lg mb-6">
-                  Revolutionizing Transportation Connections
+                  Founder & CEO
                 </p>
 
                 <div className="space-y-4 text-gray-700 leading-relaxed">
                   <p>
-                    FreightThis is dedicated to transforming how transportation buyers and sellers connect. We eliminate the noise of endless sales calls and emails, creating a trusted platform where real solutions meet genuine needs.
+                    With over 30 years of experience in the transportation and logistics industry, Bob Houston founded FreightThis with a clear vision: to transform how buyers and sellers connect in the freight marketplace.
                   </p>
 
                   <p>
-                    For buyers, we provide a curated marketplace of vetted solutions tailored to your specific requirements—at no charge. For sellers, we offer a dignified way to reach potential customers without the traditional high-pressure tactics.
+                    Throughout his career, Bob witnessed firsthand the inefficiencies and frustrations that plague both service seekers and providers—endless cold calls, mismatched solutions, and a lack of transparency that wastes everyone's time and resources.
                   </p>
 
                   <p>
-                    Our commitment is simple: connect the right people with the right solutions through transparency, integrity, and respect for everyone's time.
+                    FreightThis was born from Bob's commitment to create a better way. A platform built on integrity, where buyers find vetted, quality solutions at no cost, and sellers reach genuine prospects without high-pressure tactics.
                   </p>
+
+                  <p>
+                    "Our goal is simple," Bob explains. "Connect the right people with the right solutions through transparency, respect, and genuine value. Every interaction should build trust, not erode it."
+                  </p>
+                </div>
+
+                {/* LinkedIn Button */}
+                <div className="mt-6">
+                  <a
+                    href="https://www.linkedin.com/in/bob-houston-a1a589/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#0A66C2] hover:bg-[#004182] transition-colors shadow-md hover:shadow-lg"
+                    aria-label="Bob Houston's LinkedIn Profile"
+                  >
+                    <svg
+                      className="w-6 h-6 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                  </a>
                 </div>
               </motion.div>
             </div>

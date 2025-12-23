@@ -41,12 +41,12 @@ export default async function AdminDashboard() {
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div className="bg-white rounded-lg border border-[#e0d9c7] p-6">
-            <div className="text-sm font-medium text-gray-600 mb-2">Pending Jobs</div>
+            <div className="text-sm font-medium text-gray-600 mb-2">Pending Sponsors</div>
             <div className="text-3xl font-bold text-amber-700">{pendingJobs}</div>
           </div>
 
           <div className="bg-white rounded-lg border border-[#e0d9c7] p-6">
-            <div className="text-sm font-medium text-gray-600 mb-2">Active Jobs</div>
+            <div className="text-sm font-medium text-gray-600 mb-2">Active Sponsors</div>
             <div className="text-3xl font-bold text-green-600">{activeJobs}</div>
           </div>
 
@@ -69,7 +69,7 @@ export default async function AdminDashboard() {
           >
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Manage Jobs</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Manage Sponsors Request</h3>
                 <p className="text-sm text-gray-600">Review and approve job postings</p>
               </div>
               <svg className="w-8 h-8 text-amber-700" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
