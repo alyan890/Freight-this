@@ -103,7 +103,7 @@ export default function PartnersSection() {
         </div>
 
         {/* Trust stats below carousel */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={sectionVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ delay: 0.3 }}
@@ -121,7 +121,7 @@ export default function PartnersSection() {
               <div className="text-sm text-gray-600">{item.label}</div>
             </div>
           ))}
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   )
