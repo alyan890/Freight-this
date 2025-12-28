@@ -18,7 +18,7 @@ function MissionSection() {
           </p>
           <div className="space-y-4 text-lg text-gray-700 leading-relaxed">
             <p>
-              At FreightThis, we believe that finding the right job should be simple, transparent, and rewarding. Our mission is to create a platform that connects talented professionals with companies that value their skills and potential.
+              At FreightThis, we believe that finding the right Partnership should be simple, transparent, and rewarding. Our mission is to create a platform that connects talented professionals with companies that value their skills and potential.
             </p>
             <p>
               We're committed to building a job portal that prioritizes quality over quantity, ensuring that every job listing is vetted and every application is treated with respect.

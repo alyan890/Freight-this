@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 
 type Props = {
   open: boolean
-  onClose: () => void
+  onCloseAction: () => void
   initialType: 'Find' | 'Sell' | null
 }
 
@@ -21,26 +21,29 @@ const GROUPS: { title: string; items: string[] }[] = [
       'Drayage',
       'Dedicated Trucking',
       'Parcel & Courier Services',
+      'Cross Border',
     ],
   },
   {
     title: 'Technology Solutions',
     items: [
+      'AI / Predictive Analytics',
+      'Digital Freight Platforms',
+      'EDI / API Integrations',
+      'Electronic Logging Devices (ELDs)',
+      'Financial / Invoice Management Software',
+      'Fleet Management Software',
+      'GPS & Asset Tracking',
+      'On-Demand Apps',
+      'Procurement Solutions',
+      'Risk, Security & Compliance',
+      'Route & Load Planning / Optimization',
+      'Scenario Planning',
+      'Telematics',
+      'Tracking Solutions',
       'Transportation Management Systems (TMS)',
       'Warehouse Management Systems (WMS)',
-      'Fleet Management Software',
-      'On-Demand Apps',
       'Yard Management Systems',
-      'Procurement Solutions',
-      'Telematics',
-      'GPS & Asset Tracking',
-      'Electronic Logging Devices (ELDs)',
-      'Digital Freight Platforms',
-      'AI / Predictive Analytics',
-      'EDI / API Solutions',
-      'Route & Load Planning / Optimization',
-      'Financial / Invoice Management Software',
-      'Tracking Solutions',
     ],
   },
   {
@@ -54,7 +57,7 @@ const GROUPS: { title: string; items: string[] }[] = [
   },
 ]
 
-export default function SolutionRequestModal({ open, onClose, initialType }: Props) {
+export default function SolutionRequestModal({ open, onCloseAction, initialType }: Props) {
   const [selected, setSelected] = useState<Record<string, boolean>>({})
   const [otherText, setOtherText] = useState('')
   const [fullName, setFullName] = useState('')
@@ -103,7 +106,7 @@ export default function SolutionRequestModal({ open, onClose, initialType }: Pro
       setSuccess(true)
       setTimeout(() => {
         setSuccess(false)
-        onClose()
+        onCloseAction()
       }, 2500)
     } catch (err: any) {
       setError(err.message || 'Failed to send request')
@@ -114,14 +117,14 @@ export default function SolutionRequestModal({ open, onClose, initialType }: Pro
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onCloseAction} />
 
       <div className="relative max-w-4xl w-full my-8 bg-[#faf8f3] rounded-2xl shadow-2xl border border-[#e0d9c7]">
         {/* Header */}
-        <div className="sticky top-0 z-10 flex justify-between items-center px-6 py-4 bg-gradient-to-r from-amber-600 to-amber-700 rounded-t-2xl">
+        <div className="sticky top-0 z-10 flex justify-between items-center px-6 py-4 bg-linear-to-r from-amber-600 to-amber-700 rounded-t-2xl">
           <h3 className="text-xl font-bold text-white">Request a Solution</h3>
           <button 
-            onClick={onClose} 
+            onClick={onCloseAction} 
             className="text-white hover:text-amber-100 transition-colors p-2 hover:bg-white/10 rounded-lg"
             aria-label="Close modal"
           >
@@ -212,7 +215,7 @@ export default function SolutionRequestModal({ open, onClose, initialType }: Pro
                     onClick={() => setType('Find')} 
                     className={`flex-1 px-4 py-3 rounded-lg font-semibold transition-all ${
                       type === 'Find' 
-                        ? 'bg-gradient-to-r from-amber-600 to-amber-700 text-white shadow-lg' 
+                        ? 'bg-linear-to-r from-amber-600 to-amber-700 text-white shadow-lg' 
                         : 'bg-[#f5f0e6] text-gray-700 hover:bg-[#e0d9c7]'
                     }`}
                   >
@@ -223,7 +226,7 @@ export default function SolutionRequestModal({ open, onClose, initialType }: Pro
                     onClick={() => setType('Sell')} 
                     className={`flex-1 px-4 py-3 rounded-lg font-semibold transition-all ${
                       type === 'Sell' 
-                        ? 'bg-gradient-to-r from-amber-600 to-amber-700 text-white shadow-lg' 
+                        ? 'bg-linear-to-r from-amber-600 to-amber-700 text-white shadow-lg' 
                         : 'bg-[#f5f0e6] text-gray-700 hover:bg-[#e0d9c7]'
                     }`}
                   >
@@ -270,7 +273,7 @@ export default function SolutionRequestModal({ open, onClose, initialType }: Pro
               {/* Error Message */}
               {error && (
                 <div className="bg-red-50 border-2 border-red-200 text-red-800 px-4 py-3 rounded-lg flex items-start gap-3">
-                  <svg className="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
                   </svg>
                   <span>{error}</span>
@@ -281,7 +284,7 @@ export default function SolutionRequestModal({ open, onClose, initialType }: Pro
               <div className="flex justify-end gap-3 pt-2">
                 <button
                   type="button"
-                  onClick={onClose}
+                  onClick={onCloseAction}
                   className="px-6 py-3 border-2 border-[#e0d9c7] text-gray-700 rounded-lg font-semibold hover:bg-[#f5f0e6] transition-all"
                 >
                   Cancel
@@ -289,7 +292,7 @@ export default function SolutionRequestModal({ open, onClose, initialType }: Pro
                 <button 
                   type="submit" 
                   disabled={loading} 
-                  className="px-8 py-3 bg-gradient-to-r from-amber-600 to-amber-700 text-white rounded-lg font-semibold hover:from-amber-700 hover:to-amber-800 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
+                  className="px-8 py-3 bg-linear-to-r from-amber-600 to-amber-700 text-white rounded-lg font-semibold hover:from-amber-700 hover:to-amber-800 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
                 >
                   {loading ? (
                     <span className="flex items-center gap-2">

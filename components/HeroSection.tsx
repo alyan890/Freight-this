@@ -94,7 +94,7 @@ export default function HeroSection() {
             {isModalOpen && (
               <SolutionRequestModal
                 open={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
+                onCloseAction={() => setIsModalOpen(false)}
                 initialType={requestType}
               />
             )}
