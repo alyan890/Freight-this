@@ -60,7 +60,7 @@ export default function HeroSection() {
             >
               <h3 className="text-amber-300 font-bold text-lg mb-3">For Buyers:</h3>
               <p className="text-gray-200 leading-relaxed">
-                Eliminate the endless stream of emails and phone calls from salespeople. Get real solutions vetted for you that meet your needs. Let us do the work — no charge.
+                For Buyers — Eliminate the guesswork and vast search for reputable vendors. Forget the endless stream of emails and phone calls from salespeople. Get real solutions vetted for you that meet your needs. Let us do the work — no charge.
               </p>
             </div>
             <div
