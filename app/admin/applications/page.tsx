@@ -51,7 +51,7 @@ export default async function AdminApplicationsPage() {
                 <tr>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Applicant</th>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Email</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Job Title</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Partnership Title</th>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Applied On</th>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Status</th>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Actions</th>

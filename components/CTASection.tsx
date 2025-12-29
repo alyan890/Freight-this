@@ -64,7 +64,7 @@ export default function CTASection() {
             custom={2}
             className="text-lg md:text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed"
           >
-            Join thousands of professionals in the transportation industry who are advancing their careers with opportunities found on our platform. Post a job, find talent, or discover your next great opportunity now.
+            Join thousands of professionals in the transportation industry who are advancing their careers with opportunities found on our platform. Post a partnership, find talent, or discover your next great opportunity now.
           </motion.p>
 
           {/* CTA Buttons */}

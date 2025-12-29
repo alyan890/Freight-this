@@ -36,9 +36,9 @@ const values = [
 ]
 
 const stats = [
-  { label: 'Active Jobs', value: '500+' },
-  { label: 'Companies', value: '100+' },
-  { label: 'Job Seekers', value: '10K+' },
+  { label: 'Active Partnerships', value: '500+' },
+  { label: 'Companies', value: '200+' },
+  { label: 'Partnership Seekers', value: '10K+' },
   { label: 'Success Rate', value: '95%' },
 ]
 
@@ -155,12 +155,12 @@ export default function AboutPage() {
                 <p>
                   At FreightThis, we believe that finding the right Partnership should be simple, transparent, and rewarding. Our mission is to create a platform that connects talented professionals with companies that value their skills and potential.
 
-We're committed to building a job portal that prioritizes quality over quantity, ensuring that every job listing is vetted and every application is treated with respect.
+We're committed to building a partnership portal that prioritizes quality over quantity, ensuring that every partnership listing is vetted and every application is treated with respect.
 
 By leveraging technology and maintaining a human touch, we're transforming how the transportation industry approaches hiring and career development.
                 </p>
                 <p>
-                  We're committed to building a job portal that prioritizes quality over quantity, ensuring that every job listing is vetted and every application is treated with respect.
+                  We're committed to building a partnership portal that prioritizes quality over quantity, ensuring that every partnership listing is vetted and every application is treated with respect.
                 </p>
                 <p>
                   By leveraging technology and maintaining a human touch, we're transforming how the transportation industry approaches hiring and career development.
@@ -239,7 +239,7 @@ By leveraging technology and maintaining a human touch, we're transforming how t
               How It Works
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              A seamless experience for both job seekers and employers
+              A seamless experience for both partnership seekers and employers
             </p>
           </div>
 
@@ -247,20 +247,20 @@ By leveraging technology and maintaining a human touch, we're transforming how t
             {[
               {
                 number: '1',
-                title: 'For Job Seekers',
-                description: 'Browse verified job listings, filter by category and location, and apply with your resume. Get notified when employers review your application.',
+                title: 'For Partnership Seekers',
+                description: 'Browse verified partnership listings, filter by category and location, and apply with your resume. Get notified when employers review your application.',
                 image: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=2070&auto=format&fit=crop',
               },
               {
                 number: '2',
                 title: 'For Employers',
-                description: 'Post your job openings with detailed descriptions. Our team reviews and approves listings within 24-48 hours. Receive applications directly and manage candidates efficiently.',
+                description: 'Post your partnership openings with detailed descriptions. Our team reviews and approves listings within 24-48 hours. Receive applications directly and manage candidates efficiently.',
                 image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop',
               },
               {
                 number: '3',
                 title: 'Quality Assurance',
-                description: 'Every job posting is reviewed by our team before going live. Jobs automatically expire after 90 days to keep listings fresh and relevant.',
+                description: 'Every partnership posting is reviewed by our team before going live. Partnerships automatically expire after 90 days to keep listings fresh and relevant.',
                 image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=2074&auto=format&fit=crop',
               },
             ].map((step, index) => (

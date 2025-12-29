@@ -44,7 +44,7 @@ export default async function JobsPage({
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div>
                 <p className="text-sm uppercase tracking-[0.2em] text-amber-700/80 mb-2">Opportunities Await</p>
-                <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-3 text-gray-900">Browse Jobs</h1>
+                <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-3 text-gray-900">Browse Partnerships</h1>
                 <p className="text-gray-700 max-w-2xl">Curated roles from vetted teams across logistics and beyond. Filter quickly and apply with confidence.</p>
                 <div className="mt-4 inline-flex items-center gap-3 text-sm text-amber-800/80">
                   <span className="px-3 py-1 rounded-full bg-white/80 border border-[#e0d9c7] text-gray-800 shadow-sm">{jobs.length} open role{jobs.length !== 1 ? 's' : ''}</span>
@@ -55,7 +55,7 @@ export default async function JobsPage({
                 href="/jobs/post"
                 className="inline-flex items-center justify-center gap-2 bg-amber-400/90 text-gray-900 px-6 py-3 rounded-lg text-sm font-semibold shadow-lg shadow-amber-500/20 hover:bg-amber-300 transition"
               >
-                Post a Job
+                Post a Partnership
               </Link>
             </div>
           </div>
@@ -93,7 +93,7 @@ export default async function JobsPage({
 
               <div>
                 <label htmlFor="type" className="block text-sm font-semibold text-gray-800 mb-2">
-                  Job Type
+                  Partnership Type
                 </label>
                 <select
                   id="type"
@@ -121,7 +121,7 @@ export default async function JobsPage({
             </form>
           </div>
 
-          {/* Job Listings */}
+          {/* Partnership Listings */}
           <div className="mt-10">
             {jobs.length === 0 ? (
               <div className="bg-white/70 border border-white/60 rounded-2xl p-12 text-center shadow-inner shadow-amber-900/5 backdrop-blur-md">

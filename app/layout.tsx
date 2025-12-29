@@ -16,17 +16,17 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'FreightThis - Find Your Dream Job',
+  title: 'FreightThis - Find Your Dream Partnership',
   description:
-    'FreightThis is a modern job portal connecting talented professionals with top employers. Browse jobs, apply, and find your next career opportunity.',
-  keywords: ['jobs', 'careers', 'job portal', 'employment', 'recruitment'],
+    'FreightThis is a modern partnership portal connecting talented professionals with top employers. Browse partnerships, apply, and find your next career opportunity.',
+  keywords: ['partnerships', 'careers', 'partnership portal', 'employment', 'recruitment'],
   icons: {
     icon: [
       { url: '/PNG-1.png', type: 'image/png' },
     ],
   },
   openGraph: {
-    title: 'FreightThis - Find Your Dream Job',
+    title: 'FreightThis - Find Your Dream Partnership',
     description: 'Connect with top employers and discover opportunities that match your skills.',
     type: 'website',
   },

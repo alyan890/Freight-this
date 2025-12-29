@@ -22,13 +22,13 @@ export async function sendJobPostedEmail(jobData: {
   const msg = {
     to: ADMIN_EMAIL,
     from: FROM_EMAIL,
-    subject: `New Job Posted: ${jobData.title}`,
-    text: `A new job has been posted and is awaiting approval.\n\nJob Title: ${jobData.title}\nCompany: ${jobData.companyName || 'N/A'}\nLocation: ${jobData.location}\nContact: ${jobData.contactEmail}`,
+    subject: `New Partnership Posted: ${jobData.title}`,
+    text: `A new partnership has been posted and is awaiting approval.\n\nPartnership Title: ${jobData.title}\nCompany: ${jobData.companyName || 'N/A'}\nLocation: ${jobData.location}\nContact: ${jobData.contactEmail}`,
     html: `
-      <h2>New Job Posted</h2>
-      <p>A new job has been posted and is awaiting approval.</p>
+      <h2>New Partnership Posted</h2>
+      <p>A new partnership has been posted and is awaiting approval.</p>
       <ul>
-        <li><strong>Job Title:</strong> ${jobData.title}</li>
+        <li><strong>Partnership Title:</strong> ${jobData.title}</li>
         <li><strong>Company:</strong> ${jobData.companyName || 'N/A'}</li>
         <li><strong>Location:</strong> ${jobData.location}</li>
         <li><strong>Contact:</strong> ${jobData.contactEmail}</li>
@@ -59,12 +59,12 @@ export async function sendJobApprovedEmail(jobData: {
   const msg = {
     to: jobData.contactEmail,
     from: FROM_EMAIL,
-    subject: `Your Job Posting Has Been Approved`,
-    text: `Your job posting "${jobData.title}" has been approved and is now live!\n\nView it here: ${jobData.jobUrl}`,
+    subject: `Your Partnership Posting Has Been Approved`,
+    text: `Your partnership posting "${jobData.title}" has been approved and is now live!\n\nView it here: ${jobData.jobUrl}`,
     html: `
-      <h2>Job Approved!</h2>
-      <p>Your job posting <strong>"${jobData.title}"</strong> has been approved and is now live!</p>
-      <p><a href="${jobData.jobUrl}">View your job posting</a></p>
+      <h2>Partnership Approved!</h2>
+      <p>Your partnership posting <strong>"${jobData.title}"</strong> has been approved and is now live!</p>
+      <p><a href="${jobData.jobUrl}">View your partnership posting</a></p>
     `,
   }
 
@@ -92,10 +92,10 @@ export async function sendApplicationReceivedEmail(applicationData: {
     to: applicationData.jobContactEmail,
     from: FROM_EMAIL,
     subject: `New Application for ${applicationData.jobTitle}`,
-    text: `You have received a new application for your job posting "${applicationData.jobTitle}".\n\nApplicant: ${applicationData.applicantName}\nEmail: ${applicationData.applicantEmail}\nMessage: ${applicationData.message}`,
+    text: `You have received a new application for your partnership posting "${applicationData.jobTitle}".\n\nApplicant: ${applicationData.applicantName}\nEmail: ${applicationData.applicantEmail}\nMessage: ${applicationData.message}`,
     html: `
       <h2>New Application Received</h2>
-      <p>You have received a new application for your job posting <strong>"${applicationData.jobTitle}"</strong>.</p>
+      <p>You have received a new application for your partnership posting <strong>"${applicationData.jobTitle}"</strong>.</p>
       <ul>
         <li><strong>Applicant:</strong> ${applicationData.applicantName}</li>
         <li><strong>Email:</strong> ${applicationData.applicantEmail}</li>
@@ -162,11 +162,11 @@ export async function sendApplicationReceivedByJobPosterEmail(applicationData: {
     to: applicationData.jobPosterEmail,
     from: FROM_EMAIL,
     subject: `New Application: ${applicationData.jobTitle}`,
-    text: `Hi ${applicationData.jobPosterName || 'there'},\n\nYou have received a new application for your job posting "${applicationData.jobTitle}".\n\nApplicant Details:\nName: ${applicationData.applicantName}\nEmail: ${applicationData.applicantEmail}\n\nMessage:\n${applicationData.message}\n\nResume: ${applicationData.resumeUrl}\n\nPlease log in to your account to review the full application and contact the applicant.`,
+    text: `Hi ${applicationData.jobPosterName || 'there'},\n\nYou have received a new application for your partnership posting "${applicationData.jobTitle}".\n\nApplicant Details:\nName: ${applicationData.applicantName}\nEmail: ${applicationData.applicantEmail}\n\nMessage:\n${applicationData.message}\n\nResume: ${applicationData.resumeUrl}\n\nPlease log in to your account to review the full application and contact the applicant.`,
     html: `
       <h2>New Application Received</h2>
       <p>Hi ${applicationData.jobPosterName || 'there'},</p>
-      <p>You have received a new application for your job posting <strong>"${applicationData.jobTitle}"</strong>.</p>
+      <p>You have received a new application for your partnership posting <strong>"${applicationData.jobTitle}"</strong>.</p>
       
       <h3>Applicant Details:</h3>
       <ul>

@@ -14,9 +14,9 @@ export default async function PostJobPage() {
     <div className="bg-[#faf8f3] min-h-screen py-12">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Post a Job</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">Post a Partnership</h1>
           <p className="text-gray-600">
-            Fill out the form below to post your job listing. Our team will review it within 24-48 hours.
+            Fill out the form below to post your partnership listing. Our team will review it within 24-48 hours.
           </p>
         </div>
 

@@ -2,10 +2,10 @@ import { z } from 'zod'
 
 // Job Post validation schema
 export const jobPostSchema = z.object({
-  title: z.string().min(3, 'Job title must be at least 3 characters').max(200),
-  description: z.string().min(50, 'Job description must be at least 50 characters (tell us more about the role)'),
-  location: z.string().min(2, 'Please enter a job location'),
-  category: z.string().min(2, 'Please select a job category'),
+  title: z.string().min(3, 'Partnership title must be at least 3 characters').max(200),
+  description: z.string().min(50, 'Partnership description must be at least 50 characters (tell us more about the role)'),
+  location: z.string().min(2, 'Please enter a partnership location'),
+  category: z.string().min(2, 'Please select a partnership category'),
   jobType: z.enum(['FULL_TIME', 'PART_TIME', 'CONTRACT', 'FREELANCE', 'INTERNSHIP']),
   contactEmail: z.string().email('Please enter a valid email address'),
   companyName: z.string().optional(),

@@ -72,7 +72,7 @@ export default function JobPostSuccessPage() {
                   2
                 </span>
                 <span className="text-amber-900">
-                  <strong>Approval:</strong> Once approved, your job will be visible to all job seekers
+                  <strong>Approval:</strong> Once approved, your partnership will be visible to all partnership seekers
                 </span>
               </li>
               <li className="flex items-start">

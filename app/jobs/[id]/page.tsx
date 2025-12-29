@@ -39,10 +39,10 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
           <svg className="w-5 h-5 mr-2" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
             <path d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
           </svg>
-          Back to Jobs
+          Back to Partnerships
         </Link>
 
-        {/* Job Header */}
+        {/* Partnership Header */}
         <div className="bg-white rounded-lg border border-[#e0d9c7] p-8 mb-6">
           {/* Job Image */}
           {job.imageUrl && (
@@ -105,9 +105,9 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
           </div>
         </div>
 
-        {/* Job Description */}
+        {/* Partnership Description */}
         <div className="bg-white rounded-lg border border-[#e0d9c7] p-8 mb-6">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-4">Job Description</h2>
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4">Partnership Description</h2>
           <div className="prose max-w-none text-gray-700 whitespace-pre-wrap">
             {job.description}
           </div>

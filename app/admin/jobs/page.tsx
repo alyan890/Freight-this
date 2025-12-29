@@ -54,7 +54,7 @@ export default async function AdminJobsPage() {
             <table className="w-full">
               <thead className="bg-[#f5f0e6] border-b border-[#e0d9c7]">
                 <tr>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Job Title</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Partnership Title</th>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Posted By</th>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Applications</th>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Status</th>

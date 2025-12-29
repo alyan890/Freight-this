@@ -170,10 +170,10 @@ export default function JobForm() {
         </div>
       )}
 
-      {/* Job Title */}
+      {/* Partnership Title */}
       <div>
         <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
-          Job Title * <span className="text-xs text-gray-500">(3+ characters)</span>
+          Partnership Title * <span className="text-xs text-gray-500">(3+ characters)</span>
         </label>
         <input
           type="text"
@@ -308,7 +308,7 @@ export default function JobForm() {
           onChange={handleImageChange}
           className="w-full px-4 py-2 border border-[#e0d9c7] rounded-md focus:ring-2 focus:ring-amber-700 focus:border-transparent file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-amber-50 file:text-amber-700 hover:file:bg-amber-100"
         />
-        <p className="mt-2 text-xs text-gray-600">Image is required to post a job. Max 5MB - JPG, PNG, etc.</p>
+        <p className="mt-2 text-xs text-gray-600">Image is required to post a partnership. Max 5MB - JPG, PNG, etc.</p>
         
         {imagePreview && (
           <div className="mt-4">
@@ -337,7 +337,7 @@ export default function JobForm() {
       {/* Description */}
       <div>
         <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
-          Job Description *
+          Partnership Description *
         </label>
         <textarea
           id="description"
@@ -382,12 +382,12 @@ export default function JobForm() {
           disabled={loading || uploading}
           className="px-6 py-2 bg-amber-700 text-white rounded-md hover:bg-amber-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {uploading ? 'Uploading Image...' : loading ? 'Posting...' : 'Post Job'}
+          {uploading ? 'Uploading Image...' : loading ? 'Posting...' : 'Post Partnership'}
         </button>
       </div>
 
       <p className="text-xs text-gray-500 text-center">
-        Your job will be reviewed by our team before appearing on the site. This usually takes 24-48 hours.
+        Your partnership will be reviewed by our team before appearing on the site. This usually takes 24-48 hours.
       </p>
     </form>
   )

@@ -21,7 +21,7 @@ function MissionSection() {
               At FreightThis, we believe that finding the right Partnership should be simple, transparent, and rewarding. Our mission is to create a platform that connects talented professionals with companies that value their skills and potential.
             </p>
             <p>
-              We're committed to building a job portal that prioritizes quality over quantity, ensuring that every job listing is vetted and every application is treated with respect.
+              We're committed to building a partnership portal that prioritizes quality over quantity, ensuring that every partnership listing is vetted and every application is treated with respect.
             </p>
             <p>
               By leveraging technology and maintaining a human touch, we're transforming how the transportation industry approaches hiring and career development.
