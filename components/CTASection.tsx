@@ -139,7 +139,7 @@ export default function CTASection() {
         >
           {[
             { label: 'Industry Leaders', icon: '✓' },
-            { label: 'Verified Jobs', icon: '◆' },
+            { label: 'Verified Partners', icon: '◆' },
             { label: '24/7 Support', icon: '⊕' },
           ].map((badge, i) => (
             <div key={i} className="flex flex-col items-center">
