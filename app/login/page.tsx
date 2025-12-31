@@ -4,12 +4,14 @@ import { useState } from 'react'
 import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import ForgotPasswordModal from '@/components/ForgotPasswordModal'
 
 function LoginForm() {
   const router = useRouter()
   const { update } = useSession()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [forgotPasswordOpen, setForgotPasswordOpen] = useState(false)
 
   const [formData, setFormData] = useState({
     email: '',
@@ -172,6 +174,15 @@ function LoginForm() {
                 className="w-full px-4 py-2 border border-[#e0d9c7] rounded-md focus:ring-2 focus:ring-amber-700 focus:border-transparent"
                 placeholder="••••••••"
               />
+              <div className="mt-2 text-right">
+                <button
+                  type="button"
+                  onClick={() => setForgotPasswordOpen(true)}
+                  className="text-sm text-amber-700 hover:text-amber-800 font-medium"
+                >
+                  Forgot Password?
+                </button>
+              </div>
             </div>
           </div>
 
@@ -186,6 +197,8 @@ function LoginForm() {
           </div>
         </form>
       </div>
+
+      <ForgotPasswordModal isOpen={forgotPasswordOpen} onClose={() => setForgotPasswordOpen(false)} />
     </div>
   )
 }

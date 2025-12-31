@@ -69,7 +69,7 @@ export default function HeroSection() {
             >
               <h3 className="text-amber-300 font-bold text-lg mb-3">For Sellers:</h3>
               <p className="text-gray-200 leading-relaxed">
-                Are you interested in finding customers without bothering them with a constant barrage of emails and phone calls?
+                Here's a chance to stand out and get a warm introduction to those looking for your services and solutions.
               </p>
             </div>
           </div>
