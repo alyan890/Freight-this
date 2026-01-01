@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 
 export const dynamic = 'force-dynamic'
-export const revalidate = 0
+export const revalidate = false
 
 export default function ResetPasswordPage() {
   const router = useRouter()
