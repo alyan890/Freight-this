@@ -16,6 +16,8 @@ export default function ProfilePage() {
     newPassword: '',
     confirmPassword: '',
   })
+  const [forgotPasswordMessage, setForgotPasswordMessage] = useState<string | null>(null)
+  const [forgotPasswordLoading, setForgotPasswordLoading] = useState(false)
 
   useEffect(() => {
     if (status === 'unauthenticated') {
@@ -69,6 +71,34 @@ export default function ProfilePage() {
     }
   }
 
+  const handleForgotPassword = async () => {
+    setForgotPasswordLoading(true)
+    setForgotPasswordMessage(null)
+
+    try {
+      const response = await fetch('/api/auth/forgot-password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: session.user?.email }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send reset email')
+      }
+
+      setForgotPasswordMessage('Password reset email sent! Check your inbox for instructions.')
+      setTimeout(() => setForgotPasswordMessage(null), 5000)
+    } catch (err: any) {
+      setForgotPasswordMessage(`Error: ${err.message || 'Failed to send reset email'}`)
+    } finally {
+      setForgotPasswordLoading(false)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-[#faf8f3] py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -116,6 +146,16 @@ export default function ProfilePage() {
               {error && (
                 <div className="mb-6 bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-md">
                   {error}
+                </div>
+              )}
+
+              {forgotPasswordMessage && (
+                <div className={`mb-6 px-4 py-3 rounded-md border ${
+                  forgotPasswordMessage.startsWith('Error') 
+                    ? 'bg-red-50 border-red-200 text-red-800'
+                    : 'bg-green-50 border-green-200 text-green-800'
+                }`}>
+                  {forgotPasswordMessage}
                 </div>
               )}
 
@@ -182,6 +222,15 @@ export default function ProfilePage() {
                     className="bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-all duration-300"
                   >
                     Cancel
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handleForgotPassword}
+                    disabled={forgotPasswordLoading}
+                    className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 hover:shadow-lg transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed ml-auto"
+                  >
+                    {forgotPasswordLoading ? 'Sending...' : 'Reset Password via Email'}
                   </button>
                 </div>
               </form>
