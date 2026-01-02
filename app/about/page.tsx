@@ -153,17 +153,15 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-gray-700 leading-relaxed">
                 <p>
-                  At FreightThis, we believe that finding the right Partnership should be simple, transparent, and rewarding. Our mission is to create a platform that connects talented professionals with companies that value their skills and potential.
-
-We're committed to building a partnership portal that prioritizes quality over quantity, ensuring that every partnership listing is vetted and every application is treated with respect.
+                  At FreightThis, we believe that finding the right solutions and partners should be simple, transparent, and rewarding. Our mission is to create a platform that connects transportation professionals and companies where the fit is natural and value-driven.
 
 By leveraging technology and maintaining a human touch, we're transforming how the transportation industry approaches hiring and career development.
                 </p>
                 <p>
-                  We're committed to building a partnership portal that prioritizes quality over quantity, ensuring that every partnership listing is vetted and every application is treated with respect.
+                  We are committed to building a trusted portal that prioritizes quality over quantity, ensuring that every solution provider is vetted and every connection is meaningful, timely, and relevant.
                 </p>
                 <p>
-                  By leveraging technology and maintaining a human touch, we're transforming how the transportation industry approaches hiring and career development.
+                 By leveraging technology while maintaining a strong human touch, we are transforming how the transportation industry discovers solutions, builds relationships, and improves business outcomes.
                 </p>
               </div>
             </div>

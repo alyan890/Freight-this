@@ -92,7 +92,7 @@ function LoginForm() {
 
         if (session?.user) {
           console.log('[Login] Redirecting based on role:', session.user.role)
-          const redirectPath = session.user.role === 'ADMIN' ? '/admin' : '/jobs'
+          const redirectPath = session.user.role === 'ADMIN' ? '/admin' : '/supporters'
           router.push(redirectPath)
           router.refresh()
         } else {

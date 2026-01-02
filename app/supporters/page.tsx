@@ -4,6 +4,10 @@ import { fadeInUpVariants } from '@/lib/animations'
 import { prisma } from '@/lib/prisma'
 import Image from 'next/image'
 
+// Always render fresh data so newly approved/renewed sponsors appear immediately
+export const revalidate = 0
+export const dynamic = 'force-dynamic'
+
 // Tier mapping
 const TIER_CONFIG = {
   FULL_TIME: { name: 'Premium Sponsors', order: 1, color: 'amber' },

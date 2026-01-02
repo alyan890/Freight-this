@@ -67,7 +67,7 @@ export default async function AdminApplicationsPage() {
                       {app.applicantEmail}
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-600">
-                      <Link href={`/jobs/${app.jobPostId}`} className="text-amber-700 hover:text-amber-800">
+                      <Link href={`/supporters/${app.jobPostId}`} className="text-amber-700 hover:text-amber-800">
                         {app.jobPost.title}
                       </Link>
                     </td>

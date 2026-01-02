@@ -71,7 +71,7 @@ export default async function AdminJobsPage() {
                   return (
                     <tr key={job.id} className={`border-b border-[#e0d9c7] ${isExpired ? 'bg-red-50' : 'hover:bg-[#faf8f3]'}`}>
                       <td className="px-6 py-4 text-sm text-gray-900">
-                        <Link href={`/jobs/${job.id}`} className="text-amber-700 hover:text-amber-800">
+                        <Link href={`/supporters/${job.id}`} className="text-amber-700 hover:text-amber-800">
                           {job.title}
                         </Link>
                       </td>

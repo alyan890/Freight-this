@@ -74,7 +74,7 @@ export default async function AdminCommentsPage() {
               <div className="flex justify-between items-center pt-4 border-t border-[#e0d9c7]">
                 <div className="text-xs text-gray-500">
                   {comment.jobPost ? (
-                    <Link href={`/jobs/${comment.jobPostId}`} className="text-amber-700 hover:text-amber-800">
+                    <Link href={`/supporters/${comment.jobPostId}`} className="text-amber-700 hover:text-amber-800">
                       Job: {comment.jobPost.title}
                     </Link>
                   ) : (
