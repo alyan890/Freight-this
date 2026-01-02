@@ -175,7 +175,7 @@ export default async function SupportersPage() {
             Become a Supporter
           </h2>
           <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
-            Join our community of supporters and help us build a better transportation marketplace
+           To join our community of supporters and help build a better transportation marketplace. Fill out the form below and our team will send various participation options within 24-48 hours.
           </p>
           <Link
             href="/supporters/submit"
