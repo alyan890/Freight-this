@@ -172,7 +172,7 @@ export default async function SupportersPage() {
         {/* Join the Group CTA */}
         <div className="text-center bg-linear-to-br from-amber-50 to-amber-100/50 rounded-2xl p-12 border border-amber-200">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Become a Supporter
+            Become a Sponsor
           </h2>
           <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
            To join our community of supporters and help build a better transportation marketplace. Fill out the form below and our team will send various participation options within 24-48 hours.
