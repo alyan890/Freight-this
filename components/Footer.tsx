@@ -67,7 +67,7 @@ export default function Footer() {
           </div>
 
           {/* Legal */}
-          <div>
+          {/* <div>
             <h4 className="text-sm font-semibold text-gray-800 mb-4">Legal</h4>
             <ul className="space-y-2">
               <li>
@@ -81,7 +81,7 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
 
         {/* Bottom Bar */}
