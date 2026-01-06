@@ -14,17 +14,13 @@ export default function AdminNotificationAlert() {
         if (!res.ok) return
 
         const data = await res.json()
-        const total = (data.jobs || 0) + (data.applications || 0) + (data.comments || 0)
+        const total = (data.jobs || 0)
 
         if (!isMounted) return
         setTotalNotifications(total)
 
         // Mark all as viewed so next visit starts fresh
-        await Promise.all([
-          fetch('/api/admin/counts', { method: 'POST', body: JSON.stringify({ type: 'jobs' }) }),
-          fetch('/api/admin/counts', { method: 'POST', body: JSON.stringify({ type: 'applications' }) }),
-          fetch('/api/admin/counts', { method: 'POST', body: JSON.stringify({ type: 'comments' }) }),
-        ])
+        await fetch('/api/admin/counts', { method: 'POST', body: JSON.stringify({ type: 'jobs' }) })
 
         if (total > 0) {
           playNotificationSound()

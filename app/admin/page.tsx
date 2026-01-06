@@ -62,7 +62,7 @@ export default async function AdminDashboard() {
         </div>
 
         {/* Quick Actions */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
           <Link
             href="/admin/jobs"
             className="bg-white rounded-lg border border-[#e0d9c7] p-6 hover:shadow-lg transition-shadow"
@@ -78,35 +78,7 @@ export default async function AdminDashboard() {
             </div>
           </Link>
 
-          <Link
-            href="/admin/applications"
-            className="bg-white rounded-lg border border-[#e0d9c7] p-6 hover:shadow-lg transition-shadow"
-          >
-            <div className="flex items-center justify-between">
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Applications</h3>
-                <p className="text-sm text-gray-600">View all partnership applications</p>
-              </div>
-              <svg className="w-8 h-8 text-blue-600" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-                <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-              </svg>
-            </div>
-          </Link>
 
-          <Link
-            href="/admin/comments"
-            className="bg-white rounded-lg border border-[#e0d9c7] p-6 hover:shadow-lg transition-shadow"
-          >
-            <div className="flex items-center justify-between">
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Comments</h3>
-                <p className="text-sm text-gray-600">Moderate user comments</p>
-              </div>
-              <svg className="w-8 h-8 text-purple-600" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-                <path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
-              </svg>
-            </div>
-          </Link>
         </div>
       </div>
     </div>
