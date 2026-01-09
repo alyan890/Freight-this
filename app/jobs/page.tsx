@@ -45,9 +45,9 @@ export default async function JobsPage({
               <div>
                 <p className="text-sm uppercase tracking-[0.2em] text-amber-700/80 mb-2">Opportunities Await</p>
                 <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-3 text-gray-900">Browse Partnerships</h1>
-                <p className="text-gray-700 max-w-2xl">Curated roles from vetted teams across logistics and beyond. Filter quickly and apply with confidence.</p>
+                <p className="text-gray-700 max-w-2xl">Verified partnerships with leading companies across logistics and transportation. Filter quickly and find the perfect fit.</p>
                 <div className="mt-4 inline-flex items-center gap-3 text-sm text-amber-800/80">
-                  <span className="px-3 py-1 rounded-full bg-white/80 border border-[#e0d9c7] text-gray-800 shadow-sm">{jobs.length} open role{jobs.length !== 1 ? 's' : ''}</span>
+                  <span className="px-3 py-1 rounded-full bg-white/80 border border-[#e0d9c7] text-gray-800 shadow-sm">{jobs.length} open partnership{jobs.length !== 1 ? 's' : ''}</span>
                   <span className="px-3 py-1 rounded-full bg-white/70 border border-[#e0d9c7] text-gray-700 shadow-sm">Updated daily</span>
                 </div>
               </div>
