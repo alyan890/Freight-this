@@ -11,8 +11,8 @@ const solutions = [
         <path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
       </svg>
     ),
-    title: 'Quality Jobs',
-    description: 'All job postings are verified and approved by our team to ensure quality, legitimacy, and relevance to the transportation industry.',
+    title: 'Quality Partnerships',
+    description: 'All partnership postings are verified and approved by our team to ensure quality, legitimacy, and relevance to the transportation industry.',
   },
   {
     icon: (
@@ -20,8 +20,8 @@ const solutions = [
         <path d="M13 10V3L4 14h7v7l9-11h-7z"></path>
       </svg>
     ),
-    title: 'Easy Application',
-    description: 'Apply to jobs with just a few clicks. Upload your resume and let employers discover you with our streamlined application process.',
+    title: 'Connect with Supporters',
+    description: 'Connect with supporter partners through our streamlined process. Share requirements and collaborate with vetted professionals in the transportation industry.',
   },
   {
     icon: (
@@ -30,7 +30,7 @@ const solutions = [
       </svg>
     ),
     title: 'Real-Time Updates',
-    description: 'Get instant notifications when new jobs matching your interests and skills are posted on our platform.',
+    description: 'Get instant notifications when new partnership opportunities are posted on our platform.',
   },
 ]
 
@@ -51,7 +51,7 @@ export default function SolutionsSection() {
             Why Choose FreightThis?
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Our platform provides everything you need to find or post quality jobs in the transportation and logistics industry.
+            Our platform provides everything you need to discover and build quality partnerships in the transportation and logistics industry.
           </p>
         </motion.div>
 

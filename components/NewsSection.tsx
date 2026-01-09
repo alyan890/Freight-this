@@ -23,7 +23,16 @@ export default function NewsSection() {
         const data = await response.json()
         
         if (data.success && data.news) {
-          setNews(data.news)
+          // Sort to put FreightWaves first
+          const sortedNews = data.news.sort((a: NewsItem, b: NewsItem) => {
+            const aIsFreightWaves = a.title.toLowerCase().includes('freightwaves')
+            const bIsFreightWaves = b.title.toLowerCase().includes('freightwaves')
+            
+            if (aIsFreightWaves && !bIsFreightWaves) return -1
+            if (!aIsFreightWaves && bIsFreightWaves) return 1
+            return 0
+          })
+          setNews(sortedNews)
         } else {
           setError(true)
         }
@@ -43,7 +52,7 @@ export default function NewsSection() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
-            Industry & Market News
+            FreightWaves News
           </h2>
           <div className="flex items-center justify-center py-12">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-amber-700"></div>
@@ -58,7 +67,7 @@ export default function NewsSection() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
-            Industry & Market News
+            FreightWaves News
           </h2>
           <div className="text-center py-12">
             <svg
@@ -94,7 +103,7 @@ export default function NewsSection() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Industry & Market News
+            FreightWaves News
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Stay informed with the latest market trends and logistics industry updates
@@ -103,37 +112,89 @@ export default function NewsSection() {
 
         {/* News List - Bullet style */}
         <div className="max-w-3xl mx-auto space-y-3">
-          {news.map((item, index) => (
-            <motion.a
-              key={index}
-              href={item.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              className="flex items-start gap-3 py-2 group hover:translate-x-1 transition-transform"
-            >
-              <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center mt-0.5">
-                <span className="inline-block w-2 h-2 bg-amber-700 rounded-full group-hover:scale-150 transition-transform"></span>
+          {/* Separate FreightWaves News */}
+          {news.some(item => item.title.toLowerCase().includes('freightwaves')) && (
+            <div className="mb-8">
+              <h3 className="text-lg font-bold text-amber-700 mb-4 flex items-center gap-2">
+                <span className="inline-block w-3 h-3 bg-amber-700 rounded-full"></span>
+                FreightWaves News
+              </h3>
+              <div className="space-y-3">
+                {news
+                  .filter(item => item.title.toLowerCase().includes('freightwaves'))
+                  .map((item, index) => (
+                    <motion.a
+                      key={index}
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.05 }}
+                      className="flex items-start gap-3 py-2 group hover:translate-x-1 transition-transform"
+                    >
+                      <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center mt-0.5">
+                        <span className="inline-block w-2 h-2 bg-amber-700 rounded-full group-hover:scale-150 transition-transform"></span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-base font-semibold text-gray-900 group-hover:text-amber-700 transition-colors">
+                          {item.title}
+                        </h4>
+                        <p className="text-sm text-gray-600 line-clamp-1">
+                          {item.summary}
+                        </p>
+                      </div>
+                      <span className="text-xs text-gray-500 flex-shrink-0">
+                        {new Date(item.pubDate).toLocaleDateString('en-US', {
+                          month: 'short',
+                          day: 'numeric',
+                        })}
+                      </span>
+                    </motion.a>
+                  ))}
               </div>
-              <div className="flex-1 min-w-0">
-                <h3 className="text-base font-semibold text-gray-900 group-hover:text-amber-700 transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-gray-600 line-clamp-1">
-                  {item.summary}
-                </p>
-              </div>
-              <span className="text-xs text-gray-500 flex-shrink-0">
-                {new Date(item.pubDate).toLocaleDateString('en-US', {
-                  month: 'short',
-                  day: 'numeric',
-                })}
-              </span>
-            </motion.a>
-          ))}
+            </div>
+          )}
+
+          {/* Other News */}
+          {news.some(item => !item.title.toLowerCase().includes('freightwaves')) && (
+            <div>
+              {news
+                .filter(item => !item.title.toLowerCase().includes('freightwaves'))
+                .map((item, index) => (
+                  <motion.a
+                    key={index}
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.05 }}
+                    className="flex items-start gap-3 py-2 group hover:translate-x-1 transition-transform"
+                  >
+                    <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center mt-0.5">
+                      <span className="inline-block w-2 h-2 bg-amber-700 rounded-full group-hover:scale-150 transition-transform"></span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-base font-semibold text-gray-900 group-hover:text-amber-700 transition-colors">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm text-gray-600 line-clamp-1">
+                        {item.summary}
+                      </p>
+                    </div>
+                    <span className="text-xs text-gray-500 flex-shrink-0">
+                      {new Date(item.pubDate).toLocaleDateString('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                      })}
+                    </span>
+                  </motion.a>
+                ))}
+            </div>
+          )}
         </div>
 
         {/* Footer with attribution */}

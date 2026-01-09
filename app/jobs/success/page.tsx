@@ -29,14 +29,14 @@ export default function JobPostSuccessPage() {
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m0 13.5V21m5.303-14.303-1.591 1.591m-8.424 8.424-1.591 1.591m12.006 0-1.591-1.591m-8.424-8.424-1.591-1.591M21 12h-2.25M5.25 12H3m3.408 6.303 1.591-1.591m8.424-8.424 1.591-1.591m0 12.006-1.591-1.591M7.999 7.999l-1.591-1.591" />
             </svg>
-            Job Posted Successfully!
+            Partnership Posted Successfully!
           </h1>
 
           {/* Main Message */}
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6 text-left">
             <h2 className="text-lg font-semibold text-blue-900 mb-3">Thank You for Your Submission!</h2>
             <p className="text-blue-800 mb-3">
-              Your job posting has been successfully submitted and is now pending admin approval.
+              Your partnership posting has been successfully submitted and is now pending admin approval.
             </p>
             <p className="text-blue-800">
               Our team will review your posting to ensure it meets our quality standards. This typically takes <strong>1-2 business days</strong>.
@@ -64,7 +64,7 @@ export default function JobPostSuccessPage() {
                   1
                 </span>
                 <span className="text-amber-900">
-                  <strong>Review:</strong> Our admin team reviews your job posting for quality and compliance
+                  <strong>Review:</strong> Our admin team reviews your partnership posting for quality and compliance
                 </span>
               </li>
               <li className="flex items-start">
@@ -100,7 +100,7 @@ export default function JobPostSuccessPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-4.5m0 0a2.25 2.25 0 1 0-2.25-2.25m2.25 2.25H9m3-8.25a7.5 7.5 0 1 0 7.5 7.5 7.5 7.5 0 0 0-7.5-7.5Z" />
               </svg>
               <span>
-                <strong>Tip:</strong> Check back here in the next day to see if your job has been approved. You can also view all your posted jobs from your dashboard.
+                <strong>Tip:</strong> Check back here in the next day to see if your partnership has been approved. You can also view all your posted partnerships from your dashboard.
               </span>
             </p>
           </div>
@@ -108,16 +108,16 @@ export default function JobPostSuccessPage() {
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/jobs"
+              href="/supporters"
               className="inline-flex items-center justify-center px-6 py-3 bg-amber-700 text-white font-semibold rounded-lg hover:bg-amber-800 transition-colors"
             >
-              Browse More Jobs
+              Browse Partnerships
             </Link>
             <Link
-              href="/jobs/post"
+              href="/supporters/submit"
               className="inline-flex items-center justify-center px-6 py-3 bg-white border-2 border-amber-700 text-amber-700 font-semibold rounded-lg hover:bg-amber-50 transition-colors"
             >
-              Post Another Job
+              Post Another Partnership
             </Link>
           </div>
 
