@@ -345,9 +345,9 @@ export default function SponsorForm() {
           value={formData.description}
           onChange={handleChange}
           required
-          rows={6}
+          rows={10}
           className="w-full px-4 py-2 border border-[#e0d9c7] rounded-md focus:ring-2 focus:ring-amber-700 focus:border-transparent"
-          placeholder="Tell us about your organization and why you'd like to support FreightThis..."
+          placeholder="Tell us about your organization, mission, and why you'd like to support FreightThis..."
         />
         <p className="mt-1 text-xs text-gray-500">Minimum 50 characters - tell us about your organization, mission, and what you offer to the transportation industry.</p>
       </div>

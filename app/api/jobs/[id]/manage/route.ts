@@ -47,7 +47,7 @@ export async function DELETE(
   }
 }
 
-// PATCH - Renew a job (extend expiry by 30 days)
+// PATCH - Accept a sponsor (keep active, no expiry changes needed)
 export async function PATCH(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -80,7 +80,7 @@ export async function PATCH(
 
     return NextResponse.json({
       success: true,
-      message: 'Job renewed successfully for 90 more days',
+      message: 'Sponsor accepted successfully',
       job,
     })
   } catch (error: any) {

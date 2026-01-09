@@ -49,16 +49,6 @@ export default async function AdminDashboard() {
             <div className="text-sm font-medium text-gray-600 mb-2">Active Sponsors</div>
             <div className="text-3xl font-bold text-green-600">{activeJobs}</div>
           </div>
-
-          <div className="bg-white rounded-lg border border-[#e0d9c7] p-6">
-            <div className="text-sm font-medium text-gray-600 mb-2">Total Applications</div>
-            <div className="text-3xl font-bold text-blue-600">{totalApplications}</div>
-          </div>
-
-          <div className="bg-white rounded-lg border border-[#e0d9c7] p-6">
-            <div className="text-sm font-medium text-gray-600 mb-2">Pending Comments</div>
-            <div className="text-3xl font-bold text-purple-600">{pendingComments}</div>
-          </div>
         </div>
 
         {/* Quick Actions */}

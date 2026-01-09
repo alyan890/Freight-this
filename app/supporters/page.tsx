@@ -4,7 +4,7 @@ import { fadeInUpVariants } from '@/lib/animations'
 import { prisma } from '@/lib/prisma'
 import Image from 'next/image'
 
-// Always render fresh data so newly approved/renewed sponsors appear immediately
+// Always render fresh data so newly approved sponsors appear immediately
 export const revalidate = 0
 export const dynamic = 'force-dynamic'
 
@@ -169,13 +169,33 @@ export default async function SupportersPage() {
           </div>
         )}
 
+        {/* LinkedIn Group Affiliation */}
+        <div className="mb-16 bg-white rounded-lg border border-[#e0d9c7] p-8">
+          <div className="flex items-center gap-4 justify-center">
+            <svg className="w-12 h-12 text-blue-700" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/>
+            </svg>
+            <div className="text-center">
+              <p className="text-gray-700 font-semibold text-lg">In affiliation with</p>
+              <a
+                href="https://www.linkedin.com/groups/54591/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-700 hover:text-blue-800 font-bold text-xl hover:underline"
+              >
+                175,000+ transportation professionals
+              </a>
+            </div>
+          </div>
+        </div>
+
         {/* Join the Group CTA */}
         <div className="text-center bg-linear-to-br from-amber-50 to-amber-100/50 rounded-2xl p-12 border border-amber-200">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             Become a Sponsor
           </h2>
           <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
-           To join our community of supporters and help build a better transportation marketplace. Fill out the form below and our team will send various participation options within 24-48 hours.
+            Join our community of supporters and help build a better transportation marketplace. Fill out the form below and our team will review your application within 24-48 hours.
           </p>
           <Link
             href="/supporters/submit"

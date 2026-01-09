@@ -42,8 +42,8 @@ export default function JobActionButtons({ jobId, jobTitle, isExpired }: JobActi
     }
   }
 
-  const handleRenew = async () => {
-    if (!confirm(`Renew "${jobTitle}" for 30 more days?`)) {
+  const handleAccept = async () => {
+    if (!confirm(`Accept "${jobTitle}" as a supporter?`)) {
       return
     }
 
@@ -57,14 +57,14 @@ export default function JobActionButtons({ jobId, jobTitle, isExpired }: JobActi
 
       if (!response.ok) {
         const data = await response.json()
-        throw new Error(data.error || 'Failed to renew job')
+        throw new Error(data.error || 'Failed to accept supporter')
       }
 
       // Refresh the page to show updated list
       router.refresh()
     } catch (err: any) {
-      setError(err.message || 'Failed to renew job')
-      console.error('Error renewing job:', err)
+      setError(err.message || 'Failed to accept supporter')
+      console.error('Error accepting supporter:', err)
     } finally {
       setLoading(false)
     }
@@ -90,13 +90,13 @@ export default function JobActionButtons({ jobId, jobTitle, isExpired }: JobActi
 
       <div className="flex gap-2">
         <button
-          onClick={handleRenew}
+          onClick={handleAccept}
           disabled={loading}
           className="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-green-100 text-green-700 hover:bg-green-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-          title="Extend job posting for 30 more days (from today)"
+          title="Accept this supporter request"
         >
           {loading ? (
-            'Renewing...'
+            'Accepting...'
           ) : (
             <span className="inline-flex items-center gap-1">
               <svg
@@ -110,10 +110,10 @@ export default function JobActionButtons({ jobId, jobTitle, isExpired }: JobActi
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  d="M4.5 9.75a7.5 7.5 0 0 1 12.995-3.288m2.255 4.788a7.5 7.5 0 0 1-12.995 3.288M8.25 9.75H4.5v-4.5"
+                  d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-              Renew
+              Accept
             </span>
           )}
         </button>

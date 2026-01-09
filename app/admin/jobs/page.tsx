@@ -12,7 +12,7 @@ export default async function AdminJobsPage() {
     redirect('/login')
   }
 
-  // Fetch all jobs (both pending and approved)
+  // Fetch all sponsor applications
   const jobs = await prisma.jobPost.findMany({
     include: {
       user: {
