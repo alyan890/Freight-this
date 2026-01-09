@@ -73,7 +73,16 @@ export default async function AdminJobsPage() {
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-600">
                         <div>{job.user.name}</div>
-                        <div className="text-xs text-gray-500">{job.user.email}</div>
+                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                          <span>{job.user.email}</span>
+                          <Link
+                            href={`/supporters/${job.id}`}
+                            className="text-amber-700 hover:text-amber-800 font-semibold"
+                            title="Edit contact email"
+                          >
+                            Edit
+                          </Link>
+                        </div>
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-600">
                         {job._count.applications}
