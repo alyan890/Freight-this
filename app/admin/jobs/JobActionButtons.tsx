@@ -6,10 +6,10 @@ import { useRouter } from 'next/navigation'
 interface JobActionButtonsProps {
   jobId: string
   jobTitle: string
-  isExpired: boolean
+  status: string
 }
 
-export default function JobActionButtons({ jobId, jobTitle, isExpired }: JobActionButtonsProps) {
+export default function JobActionButtons({ jobId, jobTitle, status }: JobActionButtonsProps) {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -89,34 +89,36 @@ export default function JobActionButtons({ jobId, jobTitle, isExpired }: JobActi
       )}
 
       <div className="flex gap-2">
-        <button
-          onClick={handleAccept}
-          disabled={loading}
-          className="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-green-100 text-green-700 hover:bg-green-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-          title="Accept this supporter request"
-        >
-          {loading ? (
-            'Accepting...'
-          ) : (
-            <span className="inline-flex items-center gap-1">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="h-4 w-4"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-              Accept
-            </span>
-          )}
-        </button>
+        {status !== 'APPROVED' && (
+          <button
+            onClick={handleAccept}
+            disabled={loading}
+            className="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-green-100 text-green-700 hover:bg-green-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            title="Accept this supporter request"
+          >
+            {loading ? (
+              'Accepting...'
+            ) : (
+              <span className="inline-flex items-center gap-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="h-4 w-4"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                Accept
+              </span>
+            )}
+          </button>
+        )}
 
         <button
           onClick={handleDelete}

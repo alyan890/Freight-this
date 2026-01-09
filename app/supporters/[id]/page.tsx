@@ -1,6 +1,7 @@
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { formatDate, formatJobType } from '@/lib/utils'
+import ContactEmailEditor from '@/components/ContactEmailEditor'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
@@ -16,6 +17,8 @@ export default async function SupporterDetailPage({ params }: { params: Promise<
   })
 
   const isAdmin = session?.user?.role === 'ADMIN'
+  const isOwner = session?.user?.id && sponsor?.userId === session.user.id
+  const canEditContactEmail = Boolean(isAdmin || isOwner)
 
   if (!sponsor || (sponsor.status !== 'APPROVED' && !isAdmin)) {
     notFound()
@@ -101,6 +104,10 @@ export default async function SupporterDetailPage({ params }: { params: Promise<
               </a>
             )}
           </div>
+
+          {canEditContactEmail && (
+            <ContactEmailEditor sponsorId={sponsor.id} initialEmail={sponsor.contactEmail || ''} />
+          )}
         </div>
 
         <div className="bg-white rounded-lg border border-[#e0d9c7] p-8 mb-6">

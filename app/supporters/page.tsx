@@ -36,6 +36,7 @@ export default async function SupportersPage() {
       jobType: true, // Contains tier
       location: true,
       category: true,
+      contactEmail: true,
     },
   })
 
@@ -153,6 +154,15 @@ export default async function SupportersPage() {
                               <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                               </svg>
+                            </a>
+                          )}
+
+                          {sponsor.contactEmail && (
+                            <a
+                              href={`mailto:${sponsor.contactEmail}`}
+                              className="inline-flex items-center text-sm text-amber-700 hover:text-amber-800 font-medium"
+                            >
+                              Email: {sponsor.contactEmail}
                             </a>
                           )}
                         </div>

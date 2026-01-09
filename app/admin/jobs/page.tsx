@@ -2,7 +2,7 @@ import { auth } from '@/lib/auth'
 import { redirect } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
-import { formatDate, getStatusColor, daysUntilExpiry } from '@/lib/utils'
+import { formatDate, getStatusColor } from '@/lib/utils'
 import JobActionButtons from './JobActionButtons'
 
 export default async function AdminJobsPage() {
@@ -59,17 +59,13 @@ export default async function AdminJobsPage() {
                   <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Applications</th>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Status</th>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Posted On</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Expires In</th>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {jobs.map((job: any) => {
-                  const daysLeft = daysUntilExpiry(job.expiresAt)
-                  const isExpired = daysLeft <= 0
-
                   return (
-                    <tr key={job.id} className={`border-b border-[#e0d9c7] ${isExpired ? 'bg-red-50' : 'hover:bg-[#faf8f3]'}`}>
+                    <tr key={job.id} className="border-b border-[#e0d9c7] hover:bg-[#faf8f3]">
                       <td className="px-6 py-4 text-sm text-gray-900">
                         <Link href={`/supporters/${job.id}`} className="text-amber-700 hover:text-amber-800">
                           {job.title}
@@ -91,29 +87,8 @@ export default async function AdminJobsPage() {
                         {formatDate(job.createdAt)}
                       </td>
                       <td className="px-6 py-4 text-sm">
-                        {isExpired ? (
-                          <span className="inline-flex items-center gap-1 text-red-600 font-semibold">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              strokeWidth={1.5}
-                              stroke="currentColor"
-                              className="h-4 w-4"
-                            >
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-.007 3h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                            </svg>
-                            Expired
-                          </span>
-                        ) : (
-                          <span className={daysLeft <= 5 ? 'text-orange-600 font-semibold' : 'text-gray-600'}>
-                            {daysLeft} days left
-                          </span>
-                        )}
-                      </td>
-                      <td className="px-6 py-4 text-sm">
                         <div className="flex gap-4">
-                          <JobActionButtons jobId={job.id} jobTitle={job.title} isExpired={isExpired} />
+                          <JobActionButtons jobId={job.id} jobTitle={job.title} status={job.status} />
                         </div>
                       </td>
                     </tr>
