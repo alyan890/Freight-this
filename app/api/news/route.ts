@@ -10,6 +10,35 @@ interface NewsItem {
   pubDate: string
 }
 
+// Decode HTML entities properly
+function decodeHtmlEntities(text: string): string {
+  const htmlEntities: Record<string, string> = {
+    '&amp;': '&',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&quot;': '"',
+    '&apos;': "'",
+    '&#39;': "'",
+    '&#8217;': "'",
+  }
+  
+  let decoded = text
+  // Replace named entities
+  Object.entries(htmlEntities).forEach(([entity, char]) => {
+    decoded = decoded.replace(new RegExp(entity, 'g'), char)
+  })
+  
+  // Replace numeric entities (&#123; or &#x1A;)
+  decoded = decoded.replace(/&#(\d+);/g, (_match, code) => {
+    return String.fromCharCode(parseInt(code, 10))
+  })
+  decoded = decoded.replace(/&#x([0-9a-fA-F]+);/g, (_match, code) => {
+    return String.fromCharCode(parseInt(code, 16))
+  })
+  
+  return decoded
+}
+
 // Simple XML parsing function
 function parseRSSFeed(xml: string): NewsItem[] {
   const items: NewsItem[] = []
@@ -31,15 +60,15 @@ function parseRSSFeed(xml: string): NewsItem[] {
     const pubDate = (pubDateMatch?.[1] || '').trim()
     
     if (title && link) {
-      // Clean HTML tags from description and limit length
-      const cleanDesc = description
+      // Decode entities and clean HTML tags from description
+      const decodedTitle = decodeHtmlEntities(title)
+      const cleanDesc = decodeHtmlEntities(description)
         .replace(/<[^>]*>/g, '')
-        .replace(/&[a-z]+;/gi, ' ')
         .substring(0, 150)
         .trim()
       
       items.push({
-        title,
+        title: decodedTitle,
         summary: cleanDesc || 'Read more...',
         link,
         pubDate,
