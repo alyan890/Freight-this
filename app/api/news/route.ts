@@ -55,8 +55,6 @@ function parseRSSFeed(xml: string): NewsItem[] {
 export async function GET() {
   try {
     const feeds = [
-      // Financial market news
-      'https://feeds.finance.yahoo.com/rss/2.0/headline?s=^DJI,^GSPC,^IXIC&region=US&lang=en-US',
       // Transport/logistics news (FreightWaves)
       'https://www.freightwaves.com/feed',
     ]
