@@ -156,15 +156,6 @@ export default async function SupportersPage() {
                               </svg>
                             </a>
                           )}
-
-                          {sponsor.contactEmail && (
-                            <a
-                              href={`mailto:${sponsor.contactEmail}`}
-                              className="inline-flex items-center text-sm text-amber-700 hover:text-amber-800 font-medium"
-                            >
-                              Email: {sponsor.contactEmail}
-                            </a>
-                          )}
                         </div>
                       </div>
                     ))}
