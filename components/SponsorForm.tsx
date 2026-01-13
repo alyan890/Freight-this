@@ -361,7 +361,7 @@ export default function SponsorForm() {
           className="w-full px-4 py-2 border border-[#e0d9c7] rounded-md focus:ring-2 focus:ring-amber-700 focus:border-transparent"
           placeholder="Tell us about your organization, mission, and why you'd like to support FreightThis..."
         />
-        <p className="mt-1 text-xs text-gray-500">Maximum 50 words - tell us about your organization, mission, and what you offer to the transportation industry.</p>
+        <p className="mt-1 text-xs text-gray-500">Maximum 30 words - tell us about your organization, mission, and what you offer to the transportation industry.</p>
       </div>
 
       {/* Additional Information */}
