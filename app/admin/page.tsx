@@ -52,7 +52,7 @@ export default async function AdminDashboard() {
         </div>
 
         {/* Quick Actions */}
-        <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Link
             href="/admin/jobs"
             className="bg-white rounded-lg border border-[#e0d9c7] p-6 hover:shadow-lg transition-shadow"
@@ -68,7 +68,20 @@ export default async function AdminDashboard() {
             </div>
           </Link>
 
-
+          <Link
+            href="/admin/users"
+            className="bg-white rounded-lg border border-[#e0d9c7] p-6 hover:shadow-lg transition-shadow"
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">View Users</h3>
+                <p className="text-sm text-gray-600">See all Supabase users</p>
+              </div>
+              <svg className="w-8 h-8 text-amber-700" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M17 20h5v-2a3 3 0 00-3-3h-2m-6 5v-2a3 3 0 013-3h2m-6 5H7a3 3 0 01-3-3v-2a3 3 0 013-3h2m6-5a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 100-4 2 2 0 000 4z"></path>
+              </svg>
+            </div>
+          </Link>
         </div>
       </div>
     </div>
