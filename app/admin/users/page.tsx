@@ -11,20 +11,25 @@ interface DashboardUser {
   createdAt: string
 }
 
-async function getUsers(): Promise<DashboardUser[]> {
+interface UsersResult {
+  users: DashboardUser[]
+  error?: string
+}
+
+async function getUsers(): Promise<UsersResult> {
   if (!supabaseAdmin) {
     console.warn('[Admin Users] SUPABASE_SERVICE_ROLE_KEY is not configured')
-    return []
+    return { users: [], error: 'Supabase service role key is not configured. Add SUPABASE_SERVICE_ROLE_KEY in your environment.' }
   }
 
   const { data, error } = await supabaseAdmin.auth.admin.listUsers({ perPage: 200 })
 
   if (error) {
     console.error('[Admin Users] Failed to fetch users from Supabase:', error)
-    return []
+    return { users: [], error: 'Failed to fetch users from Supabase. Check service role key and permissions.' }
   }
 
-  return (data.users || []).map((user) => {
+  const users = (data.users || []).map((user) => {
     const metadata = user.user_metadata || {}
     const name = (metadata.name as string) || (metadata.full_name as string) || 'N/A'
 
@@ -35,6 +40,8 @@ async function getUsers(): Promise<DashboardUser[]> {
       createdAt: user.created_at ?? '',
     }
   })
+
+  return { users }
 }
 
 export default async function AdminUsersPage() {
@@ -44,7 +51,7 @@ export default async function AdminUsersPage() {
     redirect('/login')
   }
 
-  const users = await getUsers()
+  const { users, error } = await getUsers()
 
   return (
     <div className="bg-[#faf8f3] min-h-screen py-12">
@@ -53,6 +60,12 @@ export default async function AdminUsersPage() {
           <h1 className="text-4xl font-bold text-gray-900">Users</h1>
           <p className="text-sm text-gray-600">Showing existing Supabase users</p>
         </div>
+
+        {error && (
+          <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+            {error}
+          </div>
+        )}
 
         <div className="bg-white rounded-lg border border-[#e0d9c7] overflow-hidden">
           <div className="overflow-x-auto">
