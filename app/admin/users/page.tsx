@@ -1,5 +1,5 @@
 import { auth } from '@/lib/auth'
-import { supabaseAdmin } from '@/lib/supabase'
+import { prisma } from '@/lib/prisma'
 import { redirect } from 'next/navigation'
 
 export const dynamic = 'force-dynamic'
@@ -8,40 +8,28 @@ interface DashboardUser {
   id: string
   email: string
   name: string
-  createdAt: string
+  createdAt: Date
 }
 
-interface UsersResult {
-  users: DashboardUser[]
-  error?: string
-}
-
-async function getUsers(): Promise<UsersResult> {
-  if (!supabaseAdmin) {
-    console.warn('[Admin Users] SUPABASE_SERVICE_ROLE_KEY is not configured')
-    return { users: [], error: 'Supabase service role key is not configured. Add SUPABASE_SERVICE_ROLE_KEY in your environment.' }
-  }
-
-  const { data, error } = await supabaseAdmin.auth.admin.listUsers({ perPage: 200 })
-
-  if (error) {
-    console.error('[Admin Users] Failed to fetch users from Supabase:', error)
-    return { users: [], error: 'Failed to fetch users from Supabase. Check service role key and permissions.' }
-  }
-
-  const users = (data.users || []).map((user) => {
-    const metadata = user.user_metadata || {}
-    const name = (metadata.name as string) || (metadata.full_name as string) || 'N/A'
-
-    return {
-      id: user.id,
-      email: user.email ?? 'N/A',
-      name,
-      createdAt: user.created_at ?? '',
-    }
+async function getUsers(): Promise<DashboardUser[]> {
+  const users = await prisma.user.findMany({
+    select: {
+      id: true,
+      email: true,
+      name: true,
+      createdAt: true,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
   })
 
-  return { users }
+  return users.map((user) => ({
+    id: user.id,
+    email: user.email ?? 'N/A',
+    name: user.name ?? 'N/A',
+    createdAt: user.createdAt,
+  }))
 }
 
 export default async function AdminUsersPage() {
@@ -51,7 +39,7 @@ export default async function AdminUsersPage() {
     redirect('/login')
   }
 
-  const { users, error } = await getUsers()
+  const users = await getUsers()
 
   return (
     <div className="bg-[#faf8f3] min-h-screen py-12">
@@ -60,12 +48,6 @@ export default async function AdminUsersPage() {
           <h1 className="text-4xl font-bold text-gray-900">Users</h1>
           <p className="text-sm text-gray-600">Showing existing Supabase users</p>
         </div>
-
-        {error && (
-          <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
-            {error}
-          </div>
-        )}
 
         <div className="bg-white rounded-lg border border-[#e0d9c7] overflow-hidden">
           <div className="overflow-x-auto">
