@@ -151,7 +151,7 @@ export default function SponsorForm() {
     // Limit description to 50 words
     if (name === 'description') {
       const wordCount = value.trim().split(/\s+/).filter(word => word.length > 0).length
-      if (wordCount > 30) {
+      if (wordCount > 20) {
         return // Don't update if exceeds 50 words
       }
     }
@@ -349,7 +349,7 @@ export default function SponsorForm() {
       {/* Sponsor Details */}
       <div>
         <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
-          Sponsor Details * <span className="text-xs text-gray-500">({descriptionWordCount}/30 words)</span>
+          Sponsor Details * <span className="text-xs text-gray-500">({descriptionWordCount}/20 words)</span>
         </label>
         <textarea
           id="description"
@@ -361,7 +361,7 @@ export default function SponsorForm() {
           className="w-full px-4 py-2 border border-[#e0d9c7] rounded-md focus:ring-2 focus:ring-amber-700 focus:border-transparent"
           placeholder="Tell us about your organization, mission, and why you'd like to support FreightThis..."
         />
-        <p className="mt-1 text-xs text-gray-500">Maximum 30 words - tell us about your organization, mission, and what you offer to the transportation industry.</p>
+        <p className="mt-1 text-xs text-gray-500">Maximum 20 words - tell us about your organization, mission, and what you offer to the transportation industry.</p>
       </div>
 
       {/* Additional Information */}
