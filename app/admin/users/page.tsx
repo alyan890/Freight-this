@@ -1,6 +1,7 @@
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { redirect } from 'next/navigation'
+import AdminUsersTable from '@/components/AdminUsersTable'
 
 export const dynamic = 'force-dynamic'
 
@@ -40,6 +41,12 @@ export default async function AdminUsersPage() {
   }
 
   const users = await getUsers()
+  const tableRows = users.map((user) => ({
+    id: user.id,
+    email: user.email,
+    name: user.name,
+    createdAt: user.createdAt.toLocaleDateString(),
+  }))
 
   return (
     <div className="bg-[#faf8f3] min-h-screen py-12">
@@ -49,46 +56,7 @@ export default async function AdminUsersPage() {
           <p className="text-sm text-gray-600">Showing existing Supabase users</p>
         </div>
 
-        <div className="bg-white rounded-lg border border-[#e0d9c7] overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-[#e0d9c7]">
-              <thead className="bg-[#faf8f3]">
-                <tr>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                    Name
-                  </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                    Email
-                  </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                    Created
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-[#e0d9c7]">
-                {users.length === 0 ? (
-                  <tr>
-                    <td className="px-6 py-4 text-sm text-gray-500" colSpan={3}>
-                      No users found.
-                    </td>
-                  </tr>
-                ) : (
-                  users
-                    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-                    .map((user) => (
-                      <tr key={user.id}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{user.name}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{user.email}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                          {user.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'N/A'}
-                        </td>
-                      </tr>
-                    ))
-                )}
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <AdminUsersTable users={tableRows} />
       </div>
     </div>
   )
