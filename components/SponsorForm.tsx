@@ -349,7 +349,7 @@ export default function SponsorForm() {
       {/* Sponsor Details */}
       <div>
         <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
-          Sponsor Details * <span className="text-xs text-gray-500">({descriptionWordCount}/50 words)</span>
+          Sponsor Details * <span className="text-xs text-gray-500">({descriptionWordCount}/30 words)</span>
         </label>
         <textarea
           id="description"
