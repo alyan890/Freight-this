@@ -151,7 +151,7 @@ export default function SponsorForm() {
     // Limit description to 50 words
     if (name === 'description') {
       const wordCount = value.trim().split(/\s+/).filter(word => word.length > 0).length
-      if (wordCount > 50) {
+      if (wordCount > 30) {
         return // Don't update if exceeds 50 words
       }
     }
