@@ -44,11 +44,11 @@ export default function LeadershipSection() {
                 className="flex items-center justify-center"
               >
                 <div
-                  className="relative w-48 h-48 md:w-56 md:h-56 rounded-xl overflow-hidden bg-gradient-to-br from-amber-100 to-amber-50 border-4 border-[#e0d9c7] group hover:shadow-lg transition-shadow duration-300 flex items-center justify-center p-4"
+                  className="relative w-72 h-72 md:w-80 md:h-80 rounded-xl overflow-hidden bg-gradient-to-br from-amber-100 to-amber-50 border-4 border-[#e0d9c7] group hover:shadow-lg transition-shadow duration-300 flex items-center justify-center p-4"
                 >
                   {/* FreightThis Logo as profile image */}
                   <img 
-                    src="/PNG-1.png" 
+                    src="/Gemini_Generated_Image_erla93erla93erla-removebg-preview.png" 
                     alt="FreightThis Logo"
                     className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                   />

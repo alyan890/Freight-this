@@ -50,10 +50,17 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 relative">
-            <Image src="/PNG-1.png" alt="FreightThis" width={70} height={70} priority />
-            <div className="text-2xl font-bold text-gray-800">
+            <Image
+              src="/Gemini_Generated_Image_erla93erla93erla-removebg-preview.png"
+              alt="FreightThis"
+              width={200}
+              height={210}
+              className="mt-2"
+              priority
+            />
+            {/* <div className="text-2xl font-bold text-gray-800">
               Freight<span className="text-amber-700">This</span>
-            </div>
+            </div> */}
             {session && hasNotifications && (
               <div className="absolute -top-1 -right-2 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
             )}

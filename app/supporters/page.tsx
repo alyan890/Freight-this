@@ -19,26 +19,31 @@ const TIER_CONFIG = {
 
 export default async function SupportersPage() {
   // Fetch approved sponsors from database (reusing JobPost table)
-  const sponsors = await prisma.jobPost.findMany({
-    where: {
-      status: 'APPROVED',
-    },
-    orderBy: {
-      createdAt: 'desc',
-    },
-    select: {
-      id: true,
-      title: true,
-      imageUrl: true,
-      companyName: true,
-      description: true,
-      salary: true, // Contains website URL
-      jobType: true, // Contains tier
-      location: true,
-      category: true,
-      contactEmail: true,
-    },
-  })
+  let sponsors: Awaited<ReturnType<typeof prisma.jobPost.findMany>> = []
+  try {
+    sponsors = await prisma.jobPost.findMany({
+      where: {
+        status: 'APPROVED',
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+      select: {
+        id: true,
+        title: true,
+        imageUrl: true,
+        companyName: true,
+        description: true,
+        salary: true, // Contains website URL
+        jobType: true, // Contains tier
+        location: true,
+        category: true,
+        contactEmail: true,
+      },
+    })
+  } catch (error) {
+    console.error('Failed to load supporters:', error)
+  }
 
   // Group sponsors by tier
   const sponsorsByTier = sponsors.reduce((acc, sponsor) => {
@@ -86,27 +91,27 @@ export default async function SupportersPage() {
                   </div>
 
                   {/* Sponsors in this tier */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                     {tierSponsors.map((sponsor) => (
                       <div
                         key={sponsor.id}
-                        className="bg-white border border-[#e0d9c7] rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 group"
+                        className="bg-white border border-[#e0d9c7] rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 group w-full max-w-xs mx-auto"
                       >
                         {/* Logo Section */}
-                        <div className="bg-gradient-to-br from-amber-50 to-white p-8 flex items-center justify-center h-48 border-b border-[#e0d9c7]">
+                        <div className="bg-gradient-to-br from-amber-50 to-white p-3 flex items-center justify-center h-28 border-b border-[#e0d9c7]">
                           {sponsor.imageUrl ? (
-                            <div className="relative w-full h-full flex items-center justify-center">
+                            <div className="relative w-full h-full">
                               <Image
                                 src={sponsor.imageUrl}
                                 alt={sponsor.title}
-                                width={200}
-                                height={200}
-                                className="object-contain max-w-full max-h-full group-hover:scale-105 transition-transform duration-300"
+                                fill
+                                sizes="100vw"
+                                className="object-contain p-2 group-hover:scale-105 transition-transform duration-300"
                               />
                             </div>
                           ) : (
-                            <div className="w-32 h-32 bg-gray-200 rounded-lg flex items-center justify-center">
-                              <span className="text-gray-400 text-sm font-medium text-center px-4">
+                            <div className="w-24 h-24 bg-gray-200 rounded-lg flex items-center justify-center">
+                              <span className="text-gray-400 text-xs font-medium text-center px-3">
                                 {sponsor.title}
                               </span>
                             </div>
@@ -114,30 +119,30 @@ export default async function SupportersPage() {
                         </div>
 
                         {/* Info Section */}
-                        <div className="p-6 space-y-4">
+                        <div className="p-3 space-y-2">
                           <div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-1">
+                            <h3 className="text-base font-bold text-gray-900 mb-1">
                               {sponsor.title}
                             </h3>
                             {sponsor.companyName && (
-                              <p className="text-sm text-gray-600">{sponsor.companyName}</p>
+                              <p className="text-[11px] text-gray-600">{sponsor.companyName}</p>
                             )}
                           </div>
 
                           {sponsor.description && (
-                            <p className="text-sm text-gray-700 line-clamp-3">
+                            <p className="text-xs text-gray-700 line-clamp-3">
                               {sponsor.description}
                             </p>
                           )}
 
-                          <div className="flex flex-wrap gap-2 text-xs">
+                          <div className="flex flex-wrap gap-2 text-[11px]">
                             {sponsor.location && (
-                              <span className="px-3 py-1 bg-amber-100 text-amber-800 rounded-full">
+                              <span className="px-2 py-0.5 bg-amber-100 text-amber-800 rounded-full">
                                 {sponsor.location}
                               </span>
                             )}
                             {sponsor.category && (
-                              <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full">
+                              <span className="px-2 py-0.5 bg-blue-100 text-blue-800 rounded-full">
                                 {sponsor.category}
                               </span>
                             )}
@@ -148,7 +153,7 @@ export default async function SupportersPage() {
                               href={sponsor.salary.startsWith('http') ? sponsor.salary : `https://${sponsor.salary}`}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center text-sm text-amber-700 hover:text-amber-800 font-medium"
+                              className="inline-flex items-center text-xs text-amber-700 hover:text-amber-800 font-medium"
                             >
                               Visit Website
                               <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

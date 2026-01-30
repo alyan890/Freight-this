@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   keywords: ['partnerships', 'careers', 'partnership portal', 'employment', 'recruitment'],
   icons: {
     icon: [
-      { url: '/PNG-1.png', type: 'image/png' },
+      { url: '/Gemini_Generated_Image_erla93erla93erla-removebg-preview.png', type: 'image/png' },
     ],
   },
   openGraph: {
@@ -39,7 +39,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={`${geistSans.variable} antialiased bg-white flex flex-col min-h-screen`}>
+      <body className={`${geistSans.variable} antialiased bg-white flex flex-col min-h-screen`} suppressHydrationWarning>
         <AuthProvider>
           <Navbar />
           <main className='flex-1'>{children}</main>
