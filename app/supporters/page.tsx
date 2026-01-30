@@ -19,7 +19,7 @@ const TIER_CONFIG = {
 
 export default async function SupportersPage() {
   // Fetch approved sponsors from database (reusing JobPost table)
-  let sponsors: Awaited<ReturnType<typeof prisma.jobPost.findMany>> = []
+  let sponsors: any[] = []
   try {
     sponsors = await prisma.jobPost.findMany({
       where: {
@@ -92,7 +92,7 @@ export default async function SupportersPage() {
 
                   {/* Sponsors in this tier */}
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-                    {tierSponsors.map((sponsor) => (
+                    {tierSponsors.map((sponsor: any) => (
                       <div
                         key={sponsor.id}
                         className="bg-white border border-[#e0d9c7] rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 group w-full max-w-xs mx-auto"

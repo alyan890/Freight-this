@@ -19,6 +19,8 @@ const partners = [
 export default function PartnersSection() {
   const [sectionRef, sectionVisible] = useScrollReveal(0.15)
 
+  return null
+
   // return (
   //   // <section className="py-24 bg-linear-to-br from-[#f5f0e6] to-[#faf8f3] relative overflow-hidden">
   //   //   {/* Subtle background parallax */}
