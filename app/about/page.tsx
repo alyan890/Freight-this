@@ -157,13 +157,13 @@ export default function AboutPage() {
 
 We're committed to building a partnership portal that prioritizes quality over quantity, ensuring that every partnership listing is vetted and every application is treated with respect.
 
-By leveraging technology and maintaining a human touch, we're transforming how the transportation industry approaches hiring and career development.
+By leveraging technology and maintaining a human touch, we're transforming how the transportation industry approaches partnerships.
                 </p>
                 <p>
                   We're committed to building a partnership portal that prioritizes quality over quantity, ensuring that every partnership listing is vetted and every application is treated with respect.
                 </p>
                 <p>
-                  By leveraging technology and maintaining a human touch, we're transforming how the transportation industry approaches hiring and career development.
+                  By leveraging technology and maintaining a human touch, we're transforming how the transportation industry approaches partnerships.
                 </p>
               </div>
             </div>
