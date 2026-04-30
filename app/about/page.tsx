@@ -154,14 +154,12 @@ export default function AboutPage() {
               <div className="space-y-4 text-gray-700 leading-relaxed">
                 <p>
                   At FreightThis, we believe that finding the right solutions and partners should be simple, transparent, and rewarding. Our mission is to create a platform that connects transportation professionals and companies where the fit is natural and value-driven.
-
-By leveraging technology and maintaining a human touch, we're transforming how the transportation industry approaches hiring and career development.
                 </p>
                 <p>
                   We are committed to building a trusted portal that prioritizes quality over quantity, ensuring that every solution provider is vetted and every connection is meaningful, timely, and relevant.
                 </p>
                 <p>
-                 By leveraging technology while maintaining a strong human touch, we are transforming how the transportation industry discovers solutions, builds relationships, and improves business outcomes.
+                  By leveraging technology and maintaining a human touch, we're transforming how the transportation industry approaches partnerships.
                 </p>
               </div>
             </div>
